@@ -3,6 +3,6 @@
 //= require jquery_ujs
 //= require bootstrap
 
-import "@hotwired/turbo-rails"
-import "controllers"
-
+$(document).ready(function() {
+    $(".dropdown-toggle").dropdown();
+});
