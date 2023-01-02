@@ -1,0 +1,26 @@
+<div class="table-responsive">
+	<table class="table table-sm table-hover">
+	  <thead>
+	    <tr>
+	      <th scope="col">ID</th>
+	      <th scope="col">Ticket ID</th>
+	      <th scope="col">Projet</th>
+	      <th scope="col">Ressource</th>
+	      <th scope="col">Département</th>
+	      <th scope="col">Estimation</th>
+	      <th scope="col">Réel</th>
+	    </tr>
+	  </thead>
+	  <tbody>
+	    <tr>
+			<td><%= @issue.id %></td>
+			<td><%= @issue.jiraid %></td>
+			<td><%= @issue.project %></td>
+			<td><%= @issue.owner %></td>
+			<td><%= @issue.departement %></td>
+			<td><%= @issue.time_forecast %></td>
+			<td><%= @issue.time_real %></td>
+	    </tr>
+	  </tbody>
+	</table>
+</div>

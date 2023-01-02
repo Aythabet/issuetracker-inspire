@@ -1,0 +1,58 @@
+<h1><%= @owner.name %>: details and information</h1>
+<br/>
+
+<div class="d-flex justify-content-around">
+	<div align="middle" class="card" style="width: 12rem;">
+	  <div class="card-body">
+	    <h5 class="card-title">Nombre de Tickets</h5>
+	    <p class="card-text"><%= @issuesowner.count %></p>
+	  </div>
+	</div>
+
+	<div align="middle" class="card" style="width: 12rem;">
+	  <div class="card-body">
+	    <h5 class="card-title">Total Estimation</h5>
+	    <p class="card-text"><%= @total_estimation %> hours</p>
+	  </div>
+	</div>
+
+	<div align="middle" class="card" style="width: 12rem;">
+	  <div class="card-body">
+	    <h5 class="card-title">Total Réel</h5>
+	    <p class="card-text"><%= @total_real %> hours</p>
+	  </div>
+	</div>
+
+	<div align="middle" class="card" style="width: 12rem;">
+	  <div class="card-body">
+	    <h5 class="card-title">E/R difference</h5>
+	    <p class="card-text"><%= @total_estimation - @total_real%> hours</p>
+	  </div>
+	</div>
+</div>
+<br/>
+
+<div class="table-responsive">
+	<table class="table table-sm table-hover table-justified">
+		<thead>
+			<tr>
+				<th scope="col">Jira ID</th>
+				<th scope="col">Owner</th>
+				<th scope="col">Département</th>
+				<th scope="col">Estimation</th>
+				<th scope="col">Réel</th>
+			</tr>
+		</thead>
+		<tbody>
+			<% @issuesowner.each do |issue| %>
+				<tr>
+				<td><%= issue.jiraid %></td>
+				<td><%= issue.owner %></td>
+				<td><%= issue.departement %></td>
+				<td><%= issue.time_forecast %></td>
+				<td><%= issue.time_real %></td>
+				</tr>
+			<% end %>
+		</tbody>
+	</table>
+</div>

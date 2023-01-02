@@ -1,0 +1,32 @@
+<h1>Owner's List</h1>
+<br/>
+<%= link_to new_owner_path do %>
+<button type="button" class="btn btn-success btn-lg btn-block">Add a new owner</button>
+<% end %>
+<br/>
+<div class="table-responsive">
+	<table class="table table-sm table-hover table-justified">
+		<thead>
+			<tr>
+				<th scope="col">ID</th>
+				<th scope="col">Name</th>
+				<th scope="col">Speciality</th>
+				<th scope="col"></th>
+			</tr>
+		</thead>
+		<tbody>
+			<% @owners.each do |owner| %>
+			<tr>
+				<td><%= link_to owner.id, owner %></td>
+				<td><%= owner.name %></td>
+				<td><%= owner.speciality %></td>
+				<td align="middle">
+					<%= link_to '<i class="bi bi-pencil-square"></i>'.html_safe, edit_owner_path(owner) %>
+					&nbsp;
+					<%= link_to '<i class="bi bi-trash3"></i>'.html_safe, owner_path(owner), method: :delete %>
+				</td>
+			</tr>
+			<% end %>
+		</tbody>
+	</table>
+</div>
