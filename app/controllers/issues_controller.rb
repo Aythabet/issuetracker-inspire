@@ -3,6 +3,15 @@ class IssuesController < ApplicationController
     @issues = Issue.all.order(created_at: :desc)
   end
 
+  def search
+    if params[:search].blank?
+      redirect_to issues_path and return
+    else
+      @parameter = params[:search].downcase
+      @results = Issue.all.where("lower(jiraid) LIKE :search", search: "%#{@parameter}%")
+      end
+  end
+
   def new
     @issue = Issue.new
   end
