@@ -39,6 +39,38 @@ issue = Issue.create([{
     "departement": "DevOps",
     "time_real": 3,
     "time_forecast": 3
+},
+{
+    "jiraid": "MON-2",
+    "project": "Logikko Monteur",
+    "owner": "Foulen Ben Foulen",
+    "departement": "Backend",
+    "time_real": 3,
+    "time_forecast": 3
+},
+{
+    "jiraid": "MON-3",
+    "project": "Logikko Monteur",
+    "owner": "Foulen Ben Foulen",
+    "departement": "Backend",
+    "time_real": 33,
+    "time_forecast": 24
+},
+{
+    "jiraid": "MON-4",
+    "project": "Logikko Monteur",
+    "owner": "Foulen Ben Foulen",
+    "departement": "Backend",
+    "time_real": 6,
+    "time_forecast": 7
+},
+{
+    "jiraid": "MON-5",
+    "project": "Logikko Monteur",
+    "owner": "Foulen Ben Foulen",
+    "departement": "Backend",
+    "time_real": 8,
+    "time_forecast": 10
 }
 ]);
 
