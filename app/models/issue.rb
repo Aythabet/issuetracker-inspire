@@ -1,4 +1,5 @@
 class Issue < ApplicationRecord
+  	before_validation :check_project_exists
 	before_create { |issue| issue.jiraid = issue.jiraid.upcase }
 
 	validates :jiraid, uniqueness: true
@@ -8,4 +9,13 @@ class Issue < ApplicationRecord
 
   	validates :time_real, numericality: { only_float: true }
   	validates :time_forecast, numericality: { only_float: true }
+
+
+  def check_project_exists
+    first_part = jiraid.upcase.match(/\b[a-zA-Z]{2,4}/)[0]
+    p(jiraid)
+    unless Project.exists?(jiraid: first_part)
+      errors.add(:jiraid, "does not belong to a valid project")
+    end
+  end
 end
