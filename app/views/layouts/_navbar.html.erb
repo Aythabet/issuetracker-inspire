@@ -4,16 +4,22 @@
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
+
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <%= link_to 'Projects', projects_path, class:"nav-link"%>
+          <%= link_to 'Issues', issues_path, class:"nav-link"%>
         </li>
-        <li class="nav-item">
-          <%= link_to 'Owners', owners_path, class:"nav-link"%>
-        </li>
-        <li class="nav-item">
-          <%= link_to 'Departements', departements_path, class:"nav-link"%>
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Add entities
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <%= link_to 'Projects', projects_path, class:"dropdown-item"%>
+            <%= link_to 'Owners', owners_path, class:"dropdown-item"%>
+            <%= link_to 'Departements', departements_path, class:"dropdown-item"%>
+          </div>
         </li>
       </ul>
     </div>
