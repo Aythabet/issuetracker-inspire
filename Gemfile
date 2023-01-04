@@ -3,7 +3,10 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby "3.1.2"
 
-
+gem 'figaro'
+gem 'uri'
+gem 'json', '~> 2.6', '>= 2.6.3'
+gem 'net-http'
 gem 'simple_form'
 gem 'jquery-rails', '~> 4.4'
 gem 'bootstrap'
