@@ -1,6 +1,6 @@
 class IssuesController < ApplicationController
   def index
-    @issues = Issue.all.order(created_at: :desc)
+    @issues = Issue.all.order(created_at: :desc).page params[:page]
   end
 
   def search
@@ -8,7 +8,7 @@ class IssuesController < ApplicationController
       redirect_to issues_path and return
     else
       @parameter = params[:search].downcase
-      @results = Issue.all.where("lower(jiraid) LIKE :search", search: "%#{@parameter}%")
+      @results = Issue.all.where("lower(jiraid) LIKE :search", search: "%#{@parameter}%").page params[:page]
       end
   end
 

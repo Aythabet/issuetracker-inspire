@@ -1,6 +1,6 @@
 class OwnersController < ApplicationController
    def index
-    @owners = Owner.all.order(created_at: :desc)
+    @owners = Owner.all.order(created_at: :desc).page params[:page]
   end
 
   def new
