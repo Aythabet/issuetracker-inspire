@@ -4,9 +4,9 @@ class HomeController < ApplicationController
 
 	def index
 		url = URI.parse('https://agenceinspire.atlassian.net/rest/api/2/project')
-
+		p("Basic #{ENV["JIRA_API_TOKEN"]}",)
 		headers = {
-		  'Authorization' => 'Basic YXlvdWIuYmVudGhhYmV0QGFnZW5jZS1pbnNwaXJlLmNvbTpHV3oyekxpNUhqTFp6UG1GdXZ5dTcwQ0I=',
+		  'Authorization' =>  "Basic #{ENV["JIRA_API_TOKEN"]}",
 		  'Content-Type' => 'application/json'
 		}
 
