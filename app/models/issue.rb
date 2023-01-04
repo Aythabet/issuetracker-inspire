@@ -1,6 +1,9 @@
 class Issue < ApplicationRecord
-  	before_validation :check_project_exists
+  max_paginates_per 10
+
+  before_validation :check_project_exists
 	before_create { |issue| issue.jiraid = issue.jiraid.upcase }
+
 
 	validates :jiraid, uniqueness: true
 
