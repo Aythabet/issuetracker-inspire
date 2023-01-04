@@ -1,100 +1,36 @@
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
+require 'securerandom'
+
 
 Issue.destroy_all
 Project.destroy_all
 Owner.destroy_all
 Departement.destroy_all
 
-p("Database dropped!")
+p("Database dropped...")
 
-issue = Issue.create([{
-    "jiraid": "LGK-12",
-    "project": "Logikko",
-    "owner": "Ayoub Ben Thabet",
-    "departement": "Backend",
-    "time_real": 7,
-    "time_forecast": 10
+departement = Departement.create([{
+    "name": "Backend"
 },
 {
-    "jiraid": "AC-120",
-    "project": "Academix",
-    "owner": "Saleh Omri",
-    "departement": "Frontend",
-    "time_real": 2,
-    "time_forecast": 4
+    "name": "Frontend"
 },
 {
-    "jiraid": "IT-233",
-    "project": "Inspire Talent",
-    "owner": "Nour Borchani",
-    "departement": "Backend",
-    "time_real": 73,
-    "time_forecast": 80
+    "name": "Project Management"
 },
 {
-    "jiraid": "MON-1",
-    "project": "Logikko Monteur",
-    "owner": "Foulen Ben Foulen",
-    "departement": "DevOps",
-    "time_real": 3,
-    "time_forecast": 3
+    "name": "DevOps"
 },
 {
-    "jiraid": "MON-2",
-    "project": "Logikko Monteur",
-    "owner": "Foulen Ben Foulen",
-    "departement": "Backend",
-    "time_real": 3,
-    "time_forecast": 3
+    "name": "Design"
 },
 {
-    "jiraid": "MON-3",
-    "project": "Logikko Monteur",
-    "owner": "Foulen Ben Foulen",
-    "departement": "Backend",
-    "time_real": 33,
-    "time_forecast": 24
-},
-{
-    "jiraid": "MON-4",
-    "project": "Logikko Monteur",
-    "owner": "Foulen Ben Foulen",
-    "departement": "Backend",
-    "time_real": 6,
-    "time_forecast": 7
-},
-{
-    "jiraid": "MON-5",
-    "project": "Logikko Monteur",
-    "owner": "Foulen Ben Foulen",
-    "departement": "Backend",
-    "time_real": 8,
-    "time_forecast": 10
+    "name": "Rédaction"
 }
 ]);
 
-p("Issues seeded!")
-
-project = Project.create([{
-    "name": "Logikko",
-    "jiraid": "LGK"
-},
-{
-    "name": "Academix",
-    "jiraid": "AC"
-},
-{
-    "name": "Inspire Talent",
-    "jiraid": "IT"
-},
-{
-    "name": "Logikko Monteur",
-    "jiraid": "MON"
-}
-]);
-
-p("Projects seeded!")
+p("Departement seeded!")
 
 owner = Owner.create([{
     "name": "Ayoub Ben Thabet",
@@ -111,27 +47,72 @@ owner = Owner.create([{
 {
     "name": "Foulen Ben Foulen",
     "speciality": "Design"
+},
+{
+    "name": "Mohamed Ben Mohamed",
+    "speciality": "Frontend"
+},
+{
+    "name": "Karim Mirak",
+    "speciality": "DevOps"
+},
+{
+    "name": "Clarice Lecter",
+    "speciality": "Design"
+},
+{
+    "name": "Lou Garou",
+    "speciality": "Backend"
 }
 ]);
 
 p("Owners seeded!")
 
-departement = Departement.create([{
-    "name": "Backend"
+project = Project.create([
+{
+    "name": "ValJob",
+    "jiraid": "ValJob"
 },
 {
-    "name": "Frontend"
+    "name": "Logikko",
+    "jiraid": "LGK"
 },
 {
-    "name": "Project Management"
+    "name": "Academix",
+    "jiraid": "AC"
 },
 {
-    "name": "DevOps"
+    "name": "Inspire Talent",
+    "jiraid": "IT"
 },
 {
-    "name": "Design"
+    "name": "Peach Up",
+    "jiraid": "PU"
 }
 ]);
 
-p("Departement seeded!")
-p("Database seeded!")
+p("Projects seeded!")
+
+projects_array = []
+Project.all.each do |project|
+    projects_array << [ project[:jiraid] , project[:name] ]
+end
+print(projects_array)
+
+projects_array.each do |key, name|
+    10.times do
+      Issue.create(
+        jiraid: "#{key}-#{SecureRandom.random_number(999)}",
+        project: "#{name}",
+        owner: Owner.all.sample.name,
+        departement: Departement.all.sample.name,
+        time_real: rand(1..20),
+        time_forecast: rand(1..20)
+      )
+    end
+end
+
+p("Issues seeded!")
+
+
+p("Database seeded with success!")
