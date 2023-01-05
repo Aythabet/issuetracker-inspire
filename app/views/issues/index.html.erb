@@ -1,5 +1,5 @@
 <br/>
-<%= link_to new_issue_path do %>
+<%= link_to new_project_issue_path do %>
 <button type="button" class="btn btn-success btn-lg btn-block">Add a new Issue</button>
 <% end %>
 <br/>
@@ -20,7 +20,16 @@
 		<tbody>
 			<% @issues.each do |issue| %>
 			<tr>
-				<td><%= link_to '<i class="bi bi-eye-fill" style="font-size: 1.15rem;""></i>'.html_safe, issue %></td>
+				<td><%= link_to '<i class="bi bi-eye-fill" style="font-size: 1.15rem;""></i>'.html_safe, issue %>
+					&nbsp;
+				<% if issue.retour_test %>
+				  <%= '<i class="bi bi-bug" style="font-size: 1.15rem;""></i>'.html_safe %>
+				<% else %>
+				  <%= '<i class="bi bi-hammer" style="font-size: 1.15rem;""></i>'.html_safe %>
+				<% end %>
+
+
+				</td>
 				<td><%= issue.jiraid %></td>
 				<td><%= issue.project %></td>
 				<td><%= issue.owner %></td>
@@ -29,7 +38,6 @@
 				<td><%= issue.time_real %></td>
 				<td>
 					<%= link_to '<i class="bi bi-pencil-square"></i>'.html_safe, edit_issue_path(issue) %>
-					
 					&nbsp;
 					<%= link_to '<i class="bi bi-trash3"></i>'.html_safe, issue_path(issue), method: :delete %>
 				</td>

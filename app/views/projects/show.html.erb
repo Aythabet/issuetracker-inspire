@@ -31,7 +31,10 @@
 	</div>
 </div>
 <br/>
-
+<%= link_to new_issue_path do %>
+<button type="button" class="btn btn-success btn-lg btn-block">Add a new Issue</button>
+<% end %>
+<br/>
 <div class="table-responsive">
 	<table class="table table-sm table-hover table-justified">
 		<thead>
@@ -46,7 +49,15 @@
 		<tbody>
 			<% @projectissues.each do |issue| %>
 				<tr>
-				<td><%= issue.jiraid %></td>
+				<td>
+					<%= link_to issue.jiraid, issue %>
+					&nbsp;
+					<% if issue.retour_test %>
+					  <%= '<i class="bi bi-bug" style="font-size: 1.15rem;""></i>'.html_safe %>
+					<% else %>
+					  <%= '<i class="bi bi-hammer" style="font-size: 1.15rem;""></i>'.html_safe %>
+					<% end %>
+				</td>
 				<td><%= issue.owner %></td>
 				<td><%= issue.departement %></td>
 				<td><%= issue.time_forecast %></td>
