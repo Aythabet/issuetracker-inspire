@@ -4,7 +4,7 @@
 	<table class="table table-sm table-hover">
 		<thead>
 			<tr>
-				<th scope="col">ID</th>
+				<th scope="col"></th>
 				<th scope="col">Ticket ID</th>
 				<th scope="col">Projet</th>
 				<th scope="col">Ressource</th>
@@ -16,7 +16,14 @@
 		<tbody>
 			<% @results.each do |issue| %>
 			<tr>
-				<td><%= link_to issue.id, issue %></td>
+				<td><%= link_to issue.id, issue %>
+					&nbsp;
+					<% if issue.retour_test %>
+					  <%= '<i class="bi bi-bug" style="font-size: 1.15rem;""></i>'.html_safe %>
+					<% else %>
+					  <%= '<i class="bi bi-hammer" style="font-size: 1.15rem;""></i>'.html_safe %>
+					<% end %>
+				</td>
 				<td><%= issue.jiraid %></td>
 				<td><%= issue.project %></td>
 				<td><%= issue.owner %></td>
