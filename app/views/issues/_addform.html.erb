@@ -1,8 +1,8 @@
 <%= simple_form_for @issue do |f| %>
 
-  <%= f.input :jiraid, label: 'Enter the JIRA ID'%>
-
   <%= f.input :project, label: 'Please select a project', collection: Project.all, label_method: :name, value_method: :name  %>
+
+  <%= f.input :jiraid, label: 'Enter the JIRA ID'%>
 
   <%= f.input :owner, label: "Select a team member", collection: Owner.all, label_method: :name, value_method: :name %>
 
