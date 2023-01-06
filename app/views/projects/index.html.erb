@@ -14,7 +14,7 @@
 		<tbody>
 			<% @projects.each do |project| %>
 			<tr>
-				<td><%= link_to '<i class="bi bi-eye-fill" style="font-size: 1.15rem;""></i>'.html_safe, project %></td>
+				<td align="middle"><%= link_to '<i class="bi bi-eye-fill" style="font-size: 1.15rem;""></i>'.html_safe, project %></td>
 				<td><%= project.jiraid %></td>
 				<td><%= project.name %></td>
 				<td align="middle">

@@ -20,7 +20,7 @@
 		<tbody>
 			<% @issues.each do |issue| %>
 			<tr>
-				<td><%= link_to '<i class="bi bi-eye-fill" style="font-size: 1.15rem;""></i>'.html_safe, issue %>
+				<td align="middle"><%= link_to '<i class="bi bi-eye-fill" style="font-size: 1.15rem;""></i>'.html_safe, issue %>
 					&nbsp;
 				<% if issue.retour_test %>
 				  <%= '<i class="bi bi-bug" style="font-size: 1.15rem;""></i>'.html_safe %>

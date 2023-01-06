@@ -37,6 +37,7 @@
 		<thead>
 			<tr>
 				<th scope="col">Jira ID</th>
+				<th scope="col">Project</th>
 				<th scope="col">Owner</th>
 				<th scope="col">Département</th>
 				<th scope="col">Estimation</th>
@@ -46,7 +47,16 @@
 		<tbody>
 			<% @issuesowner.each do |issue| %>
 				<tr>
-				<td><%= issue.jiraid %></td>
+				<td>
+					<%= link_to issue.jiraid, issue %>
+					&nbsp;
+					<% if issue.retour_test %>
+					  <%= '<i class="bi bi-bug" style="font-size: 1.15rem;""></i>'.html_safe %>
+					<% else %>
+					  <%= '<i class="bi bi-hammer" style="font-size: 1.15rem;""></i>'.html_safe %>
+					<% end %>
+				</td>
+				<td><%= issue.project %></td>
 				<td><%= issue.owner %></td>
 				<td><%= issue.departement %></td>
 				<td><%= issue.time_forecast %></td>

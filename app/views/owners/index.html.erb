@@ -14,7 +14,7 @@
 		<tbody>
 			<% @owners.each do |owner| %>
 			<tr>
-				<td><%= link_to '<i class="bi bi-eye-fill" style="font-size: 1.15rem;""></i>'.html_safe, owner %></td>
+				<td align="middle"><%= link_to '<i class="bi bi-eye-fill" style="font-size: 1.15rem;""></i>'.html_safe, owner %></td>
 				<td><%= owner.name %></td>
 				<td><%= owner.speciality %></td>
 				<td align="middle">

@@ -16,7 +16,7 @@
 		<tbody>
 			<% @results.each do |issue| %>
 			<tr>
-				<td><%= link_to issue.id, issue %>
+				<td align="middle"><%= link_to issue.id, issue %>
 					&nbsp;
 					<% if issue.retour_test %>
 					  <%= '<i class="bi bi-bug" style="font-size: 1.15rem;""></i>'.html_safe %>
