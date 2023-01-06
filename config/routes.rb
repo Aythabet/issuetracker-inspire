@@ -1,10 +1,10 @@
 Rails.application.routes.draw do
   get '/search', to: "issues#search"
   get '/home/index'
-  root "issues#index"
+  root "projects#index"
 
-  resources :issues
   resources :projects
+  resources :issues
   resources :owners
   resources :departements
 end
