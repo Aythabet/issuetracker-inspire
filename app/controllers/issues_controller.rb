@@ -53,6 +53,6 @@ class IssuesController < ApplicationController
   private
 
   def issue_params
-    params.require(:issue).permit(:jiraid, :project, :owner, :time_forecast, :time_real,:departement)
+    params.require(:issue).permit(:jiraid, :project, :owner, :time_forecast, :time_real,:departement, :retour_test)
   end
 end
