@@ -71,7 +71,7 @@ p("Owners seeded!")
 project = Project.create([
 {
     "name": "ValJob",
-    "jiraid": "ValJob"
+    "jiraid": "VAL"
 },
 {
     "name": "Logikko",
@@ -97,7 +97,7 @@ projects_array = []
 Project.all.each do |project|
     projects_array << [ project[:jiraid] , project[:name] ]
 end
-print(projects_array)
+p("Projects table generated...")
 
 projects_array.each do |key, name|
     10.times do

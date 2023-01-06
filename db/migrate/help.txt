@@ -1,0 +1,11 @@
+class DeleteProjectFromIssues < ActiveRecord::Migration[7.0]
+  def change
+    remove_column :issues, :project
+  end
+end
+
+class AddProjectToIssues < ActiveRecord::Migration[7.0]
+  def change
+    add_reference :issues, :project, foreign_key: true
+  end
+end
