@@ -1,31 +1,33 @@
 class HomeController < ApplicationController
-	require 'net/http'
-	require 'uri'
+  require 'net/http'
+  require 'uri'
 
-	def index
-		url = URI.parse('https://agenceinspire.atlassian.net/rest/api/2/project')
-		p("Basic #{ENV["JIRA_API_TOKEN"]}",)
-		headers = {
-		  'Authorization' =>  "Basic #{ENV["JIRA_API_TOKEN"]}",
-		  'Content-Type' => 'application/json'
-		}
+  def index
+  end
 
-		request = Net::HTTP::Get.new(url, headers)
+  def jira
+    admin_only_access
+    url = URI.parse('https://agenceinspire.atlassian.net/rest/api/2/project')
+    p("Basic #{ENV["JIRA_API_TOKEN"]}",)
+    headers = {
+      'Authorization' =>  "Basic #{ENV["JIRA_API_TOKEN"]}",
+      'Content-Type' => 'application/json'
+    }
 
-		response = Net::HTTP.start(url.hostname, url.port, use_ssl: true) do |http|
-		  http.request(request)
-		end
+    request = Net::HTTP::Get.new(url, headers)
 
-		@reponse_output = JSON.parse(response.body)
-		@collected_projects = []
+    response = Net::HTTP.start(url.hostname, url.port, use_ssl: true) do |http|
+      http.request(request)
+    end
 
-		@reponse_output.each do |project|
-	      @project_name = project['name']
-	      @project_key = project['key']
+    @reponse_output = JSON.parse(response.body)
+    @collected_projects = []
 
-	      @collected_projects << [@project_key, @project_name]
-	    end
-	end
+    @reponse_output.each do |project|
+      @project_name = project['name']
+      @project_key = project['key']
+
+      @collected_projects << [@project_key, @project_name]
+    end
+  end
 end
-
-

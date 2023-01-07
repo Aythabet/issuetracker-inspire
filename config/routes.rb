@@ -2,6 +2,7 @@ Rails.application.routes.draw do
 
   get '/search', to: "issues#search"
   get '/home/index'
+  get '/home/jira'
 
   resources :projects
   resources :issues
@@ -15,8 +16,9 @@ Rails.application.routes.draw do
 
   devise_for :users
   authenticated :user do
-    root to: 'projects#index', as: :authenticated_root
+    root to: 'home#index', as: :authenticated_root
   end
+
   root to: redirect('/users/sign_in')
 
 end

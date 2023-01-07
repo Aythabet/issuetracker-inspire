@@ -1,13 +1,15 @@
 class OwnersController < ApplicationController
-   def index
+  def index
     @owners = Owner.all.order(created_at: :desc).page params[:page]
   end
 
   def new
+    admin_only_access
     @owner = Owner.new
   end
 
   def create
+    admin_only_access
     @owner = Owner.new(owner_params)
     if @owner.save
       redirect_to owners_path
@@ -17,6 +19,7 @@ class OwnersController < ApplicationController
   end
 
   def edit
+    admin_only_access
     @owner = Owner.find(params[:id])
   end
 
@@ -28,10 +31,11 @@ class OwnersController < ApplicationController
     @issuesowner.each do |owner|
       @total_estimation = @total_estimation + owner.time_forecast
       @total_real = @total_real + owner.time_real
-   end
+    end
   end
 
   def update
+    admin_only_access
     @owner = Owner.find(params[:id])
 
     if @owner.update(owner_params)
@@ -42,10 +46,14 @@ class OwnersController < ApplicationController
   end
 
   def destroy
-    @owner = Owner.find(params[:id])
-    @owner.destroy
-
-    redirect_to owners_path
+    if current_user.admin == true
+      @owner = Owner.find(params[:id])
+      @owner.destroy
+      redirect_to owners_path
+    else
+      flash.alert = "Admin access only"
+      previous_page
+    end
   end
 
   private

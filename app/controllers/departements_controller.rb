@@ -1,5 +1,7 @@
 class DepartementsController < ApplicationController
-    def index
+  before_action :admin_only_access
+
+  def index
     @departements = Departement.all.order(created_at: :desc)
   end
 

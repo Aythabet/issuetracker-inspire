@@ -1,4 +1,5 @@
 class IssuesController < ApplicationController
+
   def index
     @issues = Issue.all.order(created_at: :desc).page params[:page]
   end
@@ -9,14 +10,16 @@ class IssuesController < ApplicationController
     else
       @parameter = params[:search].downcase
       @results = Issue.all.where("lower(jiraid) LIKE :search", search: "%#{@parameter}%").page params[:page]
-      end
+    end
   end
 
   def new
+    admin_only_access
     @issue = Issue.new
   end
 
   def create
+    admin_only_access
     @issue = Issue.new(issue_params)
     if @issue.save
       redirect_to issues_path
@@ -26,6 +29,7 @@ class IssuesController < ApplicationController
   end
 
   def edit
+    admin_only_access
     @issue = Issue.find(params[:id])
   end
 
@@ -34,6 +38,7 @@ class IssuesController < ApplicationController
   end
 
   def update
+    admin_only_access
     @issue = Issue.find(params[:id])
 
     if @issue.update(issue_params)
@@ -44,10 +49,14 @@ class IssuesController < ApplicationController
   end
 
   def destroy
-    @issue = Issue.find(params[:id])
-    @issue.destroy
-
-    redirect_to root_path
+    if current_user.admin == true
+      @issue = Issue.find(params[:id])
+      @issue.destroy
+      redirect_to root_path
+    else
+      flash.alert = "Admin access only"
+      previous_page
+    end
   end
 
   private
