@@ -91,7 +91,7 @@ project = Project.create([
 }
 ]);
 
-p("Projects seeded!")
+p("Projects Randomized!")
 
 projects_array = []
 Project.all.each do |project|
@@ -115,4 +115,10 @@ end
 p("Issues seeded!")
 
 
+User.create!({:email => "admin@inspiregroup.io", :password => "azertyu", :password_confirmation => "azertyu", :admin => true})
+p("User admin@inspiregroup.io created...")
+
+User.create!({:email => "ayoub.benthabet@inspiregroup.io", :password => "azertyu", :password_confirmation => "azertyu", :admin => false})
+
+p("User ayoub.benthabet@inspiregroup.io created...")
 p("Database seeded with success!")
