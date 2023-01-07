@@ -1,0 +1,31 @@
+<h1>Departement's List</h1>
+<br/>
+<br/>
+<div class="table-responsive">
+	<table class="table table-sm table-hover table-justified">
+		<thead>
+			<tr>
+				<th scope="col"></th>
+				<th scope="col">Name</th>
+				<th scope="col"></th>
+			</tr>
+		</thead>
+		<tbody>
+			<% @departements.each do |departement| %>
+			<tr>
+				<td align="middle"><i class="bi bi-columns-gap"></i></td>
+				<td><%= departement.name %></td>
+				<td align="middle">
+					<%= link_to '<i class="bi bi-pencil-square"></i>'.html_safe, edit_departement_path(departement) %>
+					<%= link_to '<i class="bi bi-trash3"></i>'.html_safe, departement_path(departement), method: :delete %>
+				</td>
+			</tr>
+			<% end %>
+		</tbody>
+	</table>
+</div>
+<br/>
+<br/>
+<%= link_to new_departement_path do %>
+<button type="button" class="btn btn-success btn-lg btn-block">Add a new departement</button>
+<% end %>

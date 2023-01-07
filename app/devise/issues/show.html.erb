@@ -1,0 +1,31 @@
+<h1>Ticket/Issue details</h1>
+<div class="table-responsive">
+	<table class="table table-sm table-hover">
+	  <thead>
+	    <tr>
+	      <th scope="col"></th>
+	      <th scope="col">Ticket ID</th>
+	      <th scope="col">Projet</th>
+	      <th scope="col">Ressource</th>
+	      <th scope="col">Département</th>
+	      <th scope="col">Estimation</th>
+	      <th scope="col">Réel</th>
+	    </tr>
+	  </thead>
+	  <tbody>
+	    <tr>
+			<td align="middle"><% if @issue.retour_test %>
+				  <%= '<i class="bi bi-bug" style="font-size: 1.15rem;""></i>'.html_safe %>
+				<% else %>
+				  <%= '<i class="bi bi-hammer" style="font-size: 1.15rem;""></i>'.html_safe %>
+				<% end %></td>
+			<td><%= @issue.jiraid %></td>
+			<td><%= @issue.project %></td>
+			<td><%= @issue.owner %></td>
+			<td><%= @issue.departement %></td>
+			<td><%= @issue.time_forecast %></td>
+			<td><%= @issue.time_real %></td>
+	    </tr>
+	  </tbody>
+	</table>
+</div>

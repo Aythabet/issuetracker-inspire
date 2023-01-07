@@ -1,0 +1,7 @@
+<h1>Homepage here</h1>
+
+<br/>
+<h4><%= "#{@collected_projects.length} project imported." %></h4><br/>
+<% @collected_projects.each do |project| %>
+	<li><%= @collected_projects.index(project) %> - <%= project %></li>
+<%end%>
