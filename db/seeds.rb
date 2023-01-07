@@ -114,7 +114,11 @@ end
 
 p("Issues seeded!")
 
-User.create!({:email => "ayoubthabet@gmail.com", :password => "azertyu", :password_confirmation => "azertyu" })
 
-p("User ayoubthabet@gmail.com created...")
+User.create!({:email => "admin@inspiregroup.io", :password => "azertyu", :password_confirmation => "azertyu", :admin => true})
+p("User admin@inspiregroup.io created...")
+
+User.create!({:email => "ayoub.benthabet@inspiregroup.io", :password => "azertyu", :password_confirmation => "azertyu", :admin => false})
+
+p("User ayoub.benthabet@inspiregroup.io created...")
 p("Database seeded with success!")
