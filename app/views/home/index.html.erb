@@ -30,25 +30,76 @@
               <li>Use responsive design techniques to ensure your website looks great on any device</li>
               <li>Keep up with the latest trends and technologies in the field</li>
             </ul>
+            <h4 class="card-title">Resources for Web Developers</h4>
+            <p class="card-text">
+              There are countless resources available to help web developers improve their skills and stay up-to-date with the latest technologies. Here are a few that we recommend:
+              <ul>
+                <li>Online tutorials and courses</li>
+                <li>Technical blogs and articles</li>
+                <li>Developer communities and forums</li>
+                <li>Conferences and meetups</li>
+              </ul>
+            </p>
           </p>
         </div>
       </div>
     </div>
     <div class="col-md-4 mb-4">
-      <div class="card">
-        <div class="card-body">
-          <h4 class="card-title">Resources for Web Developers</h4>
-          <p class="card-text">
-            There are countless resources available to help web developers improve their skills and stay up-to-date with the latest technologies. Here are a few that we recommend:
-            <ul>
-              <li>Online tutorials and courses</li>
-              <li>Technical blogs and articles</li>
-              <li>Developer communities and forums</li>
-              <li>Conferences and meetups</li>
-            </ul>
-          </p>
+      <div style="width: 200px; height: 200px;">
+        <div id="game">
+          <div id="score">0</div>
+          <div id="board">
+            <div class="cell" onclick="flipCell(this)"></div>
+            <div class="cell" onclick="flipCell(this)"></div>
+            <div class="cell" onclick="flipCell(this)"></div>
+            <div class="cell" onclick="flipCell(this)"></div>
+            <div class="cell" onclick="flipCell(this)"></div>
+            <div class="cell" onclick="flipCell(this)"></div>
+            <div class="cell" onclick="flipCell(this)"></div>
+            <div class="cell" onclick="flipCell(this)"></div>
+            <div class="cell" onclick="flipCell(this)"></div>
+            <div class="cell" onclick="flipCell(this)"></div>
+            <div class="cell" onclick="flipCell(this)"></div>
+            <div class="cell" onclick="flipCell(this)"></div>
+            <div class="cell" onclick="flipCell(this)"></div>
+            <div class="cell" onclick="flipCell(this)"></div>
+            <div class="cell" onclick="flipCell(this)"></div>
+            <div class="cell" onclick="flipCell(this)"></div>
+          </div>
         </div>
       </div>
+      <style>
+        #game {
+          width: 100%;
+          height: 100%;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+        }
+        #board {
+          display: flex;
+          flex-wrap: wrap;
+          width: 200px;
+          height: 200px;
+        }
+        .cell {
+          width: 50px;
+          height: 50px;
+          background-color: black;
+        }
+      </style>
+      <script>
+        function flipCell(cell) {
+          const currentColor = cell.style.backgroundColor;
+          if (currentColor === 'black') {
+            cell.style.backgroundColor = 'white';
+          } else {
+            cell.style.backgroundColor = 'black';
+          }
+          document.getElementById('score').innerHTML = parseInt(document.getElementById('score').innerHTML) + 1;
+        }
+      </script>
     </div>
   </div>
 </div>
