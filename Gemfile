@@ -3,18 +3,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby "3.1.2"
 
-gem 'kaminari'
-gem 'securerandom'
-gem 'figaro'
-gem 'uri'
-gem 'json', '~> 2.6', '>= 2.6.3'
-gem 'net-http'
-gem 'simple_form'
-gem 'jquery-rails', '~> 4.4'
-gem 'bootstrap'
-gem 'bootstrap-icons-helper', '~> 1.0', '>= 1.0.1'
-gem 'rubocop', '~> 1.42', require: false
-gem 'htmlbeautifier'
+
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.0.4"
 
@@ -82,3 +71,17 @@ group :test do
   gem "selenium-webdriver"
   gem "webdrivers"
 end
+
+gem "devise", "~> 4.8"
+gem 'kaminari'
+gem 'securerandom'
+gem 'figaro'
+gem 'uri'
+gem 'json', '~> 2.6', '>= 2.6.3'
+gem 'net-http'
+gem 'simple_form'
+gem 'jquery-rails', '~> 4.4'
+gem 'bootstrap'
+gem 'bootstrap-icons-helper', '~> 1.0', '>= 1.0.1'
+gem 'rubocop', '~> 1.42', require: false
+gem 'htmlbeautifier'

@@ -10,20 +10,31 @@
         <li class="nav-item">
           <%= link_to 'Projects', projects_path, class:"nav-link"%>
         </li>
-        <li class="nav-item">
-          <%= link_to 'Issues', issues_path, class:"nav-link"%>
+
+        <% if user_signed_in? %>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Add entities
+            </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                <%= link_to 'Issues', issues_path, class:"dropdown-item"%>
+                <%= link_to 'Team members', owners_path, class:"dropdown-item"%>
+                <%= link_to 'Departements', departements_path, class:"dropdown-item"%>
+                <%= link_to 'JIRA' , home_index_path, class:"dropdown-item"%>
+              </div>
+        <% end %>
         </li>
 
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Add entities
-          </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-            <%= link_to 'Projects', projects_path, class:"dropdown-item"%>
-            <%= link_to 'Team members', owners_path, class:"dropdown-item"%>
-            <%= link_to 'Departements', departements_path, class:"dropdown-item"%>
-            <%= link_to 'JIRA' , home_index_path, class:"dropdown-item"%>
-          </div>
+        <li class="nav-item"><% if user_signed_in? %>
+              <div class="nav-link"><%= current_user.email %></div>
+            <% else %>
+              <%= link_to "Login", new_user_session_path, class:"nav-link" %>
+            <% end %>
+        </li>
+
+        <li class="nav-item"><% if user_signed_in? %>
+          <%= link_to "Log out", destroy_user_session_path, :method => :delete, class:"nav-link" %>
+            <% end %>
         </li>
       </ul>
     </div>
