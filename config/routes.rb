@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   get '/search', to: "issues#search"
   get '/home/index'
   get '/home/jira'
+  get '/home/issues'
 
   resources :projects
   resources :issues

@@ -6,11 +6,9 @@ class HomeController < ApplicationController
   end
 
   def jira
-    admin_only_access
-    url = URI.parse('https://agenceinspire.atlassian.net/rest/api/2/project')
-    p("Basic #{ENV["JIRA_API_TOKEN"]}",)
+    url = URI.parse("https://agenceinspire.atlassian.net/rest/api/2/issue/AC-301")
     headers = {
-      'Authorization' =>  "Basic #{ENV["JIRA_API_TOKEN"]}",
+      'Authorization' =>  "Basic YXlvdWIuYmVudGhhYmV0QGFnZW5jZS1pbnNwaXJlLmNvbTpESDZlZ2VQSkFLT1ZEME1zcUlXa0RGMTU=",
       'Content-Type' => 'application/json'
     }
 
@@ -20,14 +18,10 @@ class HomeController < ApplicationController
       http.request(request)
     end
 
-    @reponse_output = JSON.parse(response.body)
-    @collected_projects = []
+    @response_output_issues = JSON.parse(response.body)
+    @this_issue = @response_output_issues["key"]
+  end
 
-    @reponse_output.each do |project|
-      @project_name = project['name']
-      @project_key = project['key']
-
-      @collected_projects << [@project_key, @project_name]
-    end
+  def issues
   end
 end

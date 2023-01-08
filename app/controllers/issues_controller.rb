@@ -1,4 +1,6 @@
 class IssuesController < ApplicationController
+  require 'net/http'
+  require 'uri'
 
   def index
     @issues = Issue.all.order(created_at: :desc).page params[:page]
@@ -35,6 +37,12 @@ class IssuesController < ApplicationController
 
   def show
     @issue = Issue.find(params[:id])
+    issue_details_from_jira
+    @api_issuekey = @response_output_issues["key"]
+    @api_timespent = @response_output_issues["fields"]["timespent"]
+    @api_project_name = @response_output_issues["fields"]["project"]["name"]
+    @api_date_created = @response_output_issues["fields"]["created"]
+    @api_display_name = @response_output_issues["fields"]["assignee"]["displayName"]
   end
 
   def update
@@ -63,5 +71,21 @@ class IssuesController < ApplicationController
 
   def issue_params
     params.require(:issue).permit(:jiraid, :project, :owner, :time_forecast, :time_real,:departement, :retour_test)
+  end
+
+  def issue_details_from_jira
+    url = URI.parse("https://agenceinspire.atlassian.net/rest/api/2/issue/#{@issue.jiraid}")
+    headers = {
+      'Authorization' =>  "Basic YXlvdWIuYmVudGhhYmV0QGFnZW5jZS1pbnNwaXJlLmNvbTpESDZlZ2VQSkFLT1ZEME1zcUlXa0RGMTU=",
+      'Content-Type' => 'application/json'
+    }
+
+    request = Net::HTTP::Get.new(url, headers)
+
+    response = Net::HTTP.start(url.hostname, url.port, use_ssl: true) do |http|
+      http.request(request)
+    end
+
+    @response_output_issues = JSON.parse(response.body)
   end
 end
