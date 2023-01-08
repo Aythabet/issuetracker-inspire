@@ -2,6 +2,8 @@ class IssuesController < ApplicationController
   require 'net/http'
   require 'uri'
 
+  before_action :define_issue , only: [:show]
+
   def index
     @issues = Issue.all.order(created_at: :desc).page params[:page]
   end
@@ -36,16 +38,31 @@ class IssuesController < ApplicationController
   end
 
   def show
-    @issue = Issue.find(params[:id])
     issue_details_from_jira
-    @api_issuekey = @response_output_issues["key"]
-    @api_time_spent = @response_output_issues["fields"]["timespent"]
-    @api_time_estimate = @response_output_issues["fields"]["timeestimate"] / 3600
-    @api_project_name = @response_output_issues["fields"]["project"]["name"]
-    @api_date_created = @response_output_issues["fields"]["created"]
-    @api_display_name = @response_output_issues["fields"]["assignee"]["displayName"]
-    @api_status = @response_output_issues["fields"]["status"]["name"]
-    @api_issue_creator = @response_output_issues["fields"]["creator"]["displayName"]
+    if @response_output_issues.is_a?(Hash)
+      flash.alert = "Please check if #{@issue.jiraid} exists and is available on JIRA"
+      @api_issuekey = "No data from the API."
+      @api_time_spent = "No data from the API."
+      @api_time_estimate = "No data from the API."
+      @api_remaining_estimate = "No data from the API."
+      @api_project_name = "No data from the API."
+      @api_date_created = "No data from the API."
+      @api_display_name = "No data from the API."
+      @api_status = "No data from the API."
+      @api_issue_creator = "No data from the API."
+      @api_summary = "No data from the API."
+    else
+      @api_issuekey = @response_output_issues["key"]
+      @api_time_spent = @response_output_issues["fields"]["timespent"]
+      @api_time_estimate = @response_output_issues["fields"]["originalEstimate"]
+      @api_remaining_estimate= @response_output_issues["fields"]["timetracking"]["remainingEstimate"]
+      @api_project_name = @response_output_issues["fields"]["project"]["name"]
+      @api_date_created = @response_output_issues["fields"]["created"]
+      @api_display_name = @response_output_issues["fields"]["assignee"]["displayName"]
+      @api_status = @response_output_issues["fields"]["status"]["name"]
+      @api_issue_creator = @response_output_issues["fields"]["creator"]["displayName"]
+      @api_summary = @response_output_issues["fields"]["summary"]
+    end
   end
 
   def update
@@ -91,4 +108,12 @@ class IssuesController < ApplicationController
 
     @response_output_issues = JSON.parse(response.body)
   end
+
+
+  def define_issue
+    @issue = Issue.find(params[:id])
+    @project = Project.find_by(name: @issue.project)
+    @owner = Owner.find_by(name: @issue.owner)
+  end
+
 end

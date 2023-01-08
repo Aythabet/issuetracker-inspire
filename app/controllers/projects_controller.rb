@@ -22,8 +22,7 @@ class ProjectsController < ApplicationController
   end
 
   def show
-    @project = Project.find(params[:id])
-    @projectissues = Issue.where(project: @project.name)
+    define_owner
     @total_estimation = 0
     @total_real  = 0
     @projectissues.each do |issue|
@@ -54,5 +53,10 @@ class ProjectsController < ApplicationController
 
   def project_params
     params.require(:project).permit(:name, :jiraid)
+  end
+
+  def define_owner
+    @project = Project.find(params[:id])
+    @projectissues = Issue.where(project: @project.name)
   end
 end

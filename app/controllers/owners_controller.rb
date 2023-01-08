@@ -24,8 +24,7 @@ class OwnersController < ApplicationController
   end
 
   def show
-    @owner = Owner.find(params[:id])
-    @issuesowner = Issue.where(owner: @owner.name)
+    define_project
     @total_estimation = 0
     @total_real  = 0
     @issuesowner.each do |owner|
@@ -60,5 +59,10 @@ class OwnersController < ApplicationController
 
   def owner_params
     params.require(:owner).permit(:name, :speciality)
+  end
+
+  def define_project
+    @owner = Owner.find(params[:id])
+    @issuesowner = Issue.where(owner: @owner.name)
   end
 end

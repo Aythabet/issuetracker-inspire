@@ -1,49 +1,47 @@
 <br/>
 <%= link_to new_issue_path do %>
-<button type="button" class="btn btn-success btn-lg btn-block">Add a new Issue</button>
+  <button type="button" class="btn btn-success btn-lg btn-block">Add a new Issue</button>
 <% end %>
 <br/>
 <div class="table-responsive">
-	<table class="table table-sm table-hover">
-		<thead>
-			<tr>
-				<th scope="col"></th>
-				<th scope="col">Ticket ID</th>
-				<th scope="col">Projet</th>
-				<th scope="col">Ressource</th>
-				<th scope="col">Département</th>
-				<th scope="col">Estimation</th>
-				<th scope="col">Réel</th>
-				<th scope="col"></th>
-			</tr>
-		</thead>
-		<tbody>
-			<% @issues.each do |issue| %>
-			<tr>
-				<td align="middle"><%= link_to '<i class="bi bi-eye-fill" style="font-size: 1.15rem;""></i>'.html_safe, issue %>
-					&nbsp;
-				<% if issue.retour_test %>
-				  <%= '<i class="bi bi-bug" style="font-size: 1.15rem;""></i>'.html_safe %>
-				<% else %>
-				  <%= '<i class="bi bi-hammer" style="font-size: 1.15rem;""></i>'.html_safe %>
-				<% end %>
-
-
-				</td>
-				<td><%= issue.jiraid %></td>
-				<td><%= issue.project %></td>
-				<td><%= issue.owner %></td>
-				<td><%= issue.departement %></td>
-				<td><%= issue.time_forecast %></td>
-				<td><%= issue.time_real %></td>
-				<td>
-					<%= link_to '<i class="bi bi-pencil-square"></i>'.html_safe, edit_issue_path(issue) %>
-					&nbsp;
-					<%= link_to '<i class="bi bi-trash3"></i>'.html_safe, issue_path(issue), method: :delete %>
-				</td>
-			</tr>
-			<% end %>
-		</tbody>
-	</table>
-	<span class="d-flex flex-row-reverse"><%= link_to_next_page @issues, 'Next' %>&nbsp;&nbsp;<%= link_to_previous_page @issues, 'Previous' %></span>
+  <table class="table table-sm table-hover">
+    <thead>
+      <tr>
+        <th scope="col"></th>
+        <th scope="col">Ticket ID</th>
+        <th scope="col">Projet</th>
+        <th scope="col">Ressource</th>
+        <th scope="col">Département</th>
+        <th scope="col">Estimation</th>
+        <th scope="col">Réel</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @issues.each do |issue| %>
+        <tr>
+          <td align="middle"><%= link_to '<i class="bi bi-eye-fill" style="font-size: 1.15rem;""></i>'.html_safe, issue %>
+            &nbsp;
+            <% if issue.retour_test %>
+              <%= '<i class="bi bi-bug" style="font-size: 1.15rem;""></i>'.html_safe %>
+            <% else %>
+              <%= '<i class="bi bi-hammer" style="font-size: 1.15rem;""></i>'.html_safe %>
+            <% end %>
+          </td>
+          <td><%= issue.jiraid %></td>
+          <td><%= link_to issue.project, @project_link %></td>
+          <td><%= link_to issue.owner, @owner_link %></td>
+          <td><%= issue.departement %></td>
+          <td><%= issue.time_forecast %></td>
+          <td><%= issue.time_real %></td>
+          <td>
+            <%= link_to '<i class="bi bi-pencil-square"></i>'.html_safe, edit_issue_path(issue) %>
+            &nbsp;
+            <%= link_to '<i class="bi bi-trash3"></i>'.html_safe, issue_path(issue), method: :delete %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <span class="d-flex flex-row-reverse"><%= link_to_next_page @issues, 'Next' %>&nbsp;&nbsp;<%= link_to_previous_page @issues, 'Previous' %></span>
 </div>
