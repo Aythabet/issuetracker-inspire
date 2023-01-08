@@ -95,7 +95,7 @@ class IssuesController < ApplicationController
   end
 
   def issue_details_from_jira
-    url = URI.parse("https://agenceinspire.atlassian.net/rest/api/2/issue/#{@issue.jiraid}")
+    url = URI.parse("https://agenceinspire.atlassian.net/rest/api/latest/issue/#{@issue.jiraid}")
     headers = {
       'Authorization' =>  "Basic #{ENV['JIRA_API_TOKEN']}",
       'Content-Type' => 'application/json'

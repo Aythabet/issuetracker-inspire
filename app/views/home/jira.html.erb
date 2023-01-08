@@ -1,2 +1,23 @@
 <h1>Home >> JIRA</h1>
-<h2>The API works, the Jira key is --><%= @this_issue %></h2>
+<% if @response_output_issues.nil? %>
+  <%= @response_output_issues = "Error loading the data, check the API response" %>
+<% else %>
+  <div class="table-responsive">
+    <table class="table table-sm table-hover">
+      <thead>
+        <tr>
+          <th scope="col"> User Name</th>
+          <th scope="col"> Email </th>
+        </tr>
+      </thead>
+      <tbody>
+        <%@collected_users.each do |user|%>
+          <tr>
+            <td><%= user %></td>
+            <td></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+<% end %>
