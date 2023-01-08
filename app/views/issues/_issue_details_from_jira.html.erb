@@ -1,5 +1,8 @@
 <h2>Local Jira ID: <%= @issue.jiraid %> | JIRA API ID: <%= @api_issuekey %></h2>
-<p>Time Spent: <%= @api_timespent %></p>
 <p>Project name: <%= @api_project_name %></p>
 <p>Creation Date: <%= @api_date_created %></p>
 <p>Assigned to: <%= @api_display_name %></p>
+<p>Status: <%= @api_status %></p>
+<p>Creator: <%= @api_issue_creator %></p>
+<p>Time Estimate: <%= @api_time_estimate %>h</p>
+<p>Time Spent: <%= @api_time_spent %>h</p>

@@ -39,10 +39,13 @@ class IssuesController < ApplicationController
     @issue = Issue.find(params[:id])
     issue_details_from_jira
     @api_issuekey = @response_output_issues["key"]
-    @api_timespent = @response_output_issues["fields"]["timespent"]
+    @api_time_spent = @response_output_issues["fields"]["timespent"]
+    @api_time_estimate = @response_output_issues["fields"]["timeestimate"] / 3600
     @api_project_name = @response_output_issues["fields"]["project"]["name"]
     @api_date_created = @response_output_issues["fields"]["created"]
     @api_display_name = @response_output_issues["fields"]["assignee"]["displayName"]
+    @api_status = @response_output_issues["fields"]["status"]["name"]
+    @api_issue_creator = @response_output_issues["fields"]["creator"]["displayName"]
   end
 
   def update
