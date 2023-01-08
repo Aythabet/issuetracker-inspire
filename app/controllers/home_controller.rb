@@ -8,7 +8,7 @@ class HomeController < ApplicationController
   def jira
     url = URI.parse("https://agenceinspire.atlassian.net/rest/api/2/issue/AC-301")
     headers = {
-      'Authorization' =>  "Basic YXlvdWIuYmVudGhhYmV0QGFnZW5jZS1pbnNwaXJlLmNvbTpESDZlZ2VQSkFLT1ZEME1zcUlXa0RGMTU=",
+      'Authorization' =>  "Basic #{ENV['JIRA_API_TOKEN']}",
       'Content-Type' => 'application/json'
     }
 
