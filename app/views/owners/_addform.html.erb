@@ -1,8 +1,5 @@
 <%= simple_form_for @owner do |f| %>
-
   <%= f.input :name, label: 'Enter the owner name', error: 'The name is mandatory, please specify one'%>
-  <%= f.input :speciality, label: 'Enter the speciality', collection: Departement.all, label_method: :name, value_method: :name  %>
-
+  <%= f.input :departement, label: 'Enter the speciality', collection: Departement.all, label_method: :name, value_method: :name  %>
   <%= f.button :submit %>
-
 <% end %>

@@ -37,6 +37,7 @@ p("Departement seeded!")
 CSV.foreach("db/jira_users.csv") do |row|
   owner = Owner.create([
                          {
+                           "departement": Departement.all.sample.name,
                            "jiraid": row[0],
                            "name": row[1],
                            "email": row[2],

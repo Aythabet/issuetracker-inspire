@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_01_08_110629) do
+ActiveRecord::Schema[7.0].define(version: 2023_01_08_112250) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -41,6 +41,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_08_110629) do
     t.string "status"
     t.string "date_joined_jira"
     t.string "last_seen_on_jira"
+    t.string "departement"
   end
 
   create_table "projects", force: :cascade do |t|
