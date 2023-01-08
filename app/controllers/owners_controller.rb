@@ -58,7 +58,7 @@ class OwnersController < ApplicationController
   private
 
   def owner_params
-    params.require(:owner).permit(:name, :speciality)
+    params.require(:owner).permit(:name, :departement, :jiraid, :email, :status, :date_joined_jira, :last_seen_on_jira, )
   end
 
   def define_project

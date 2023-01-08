@@ -52,7 +52,11 @@
               <%= '<i class="bi bi-hammer" style="font-size: 1.15rem;""></i>'.html_safe %>
             <% end %>
           </td>
-          <td><%= link_to issue.project, Project.find_by(name: issue.project) %></td>
+          <% if current_user.admin == true %>
+            <td><%= link_to issue.project, Project.find_by(name: issue.project) %></td>
+          <% else %>
+            <td><%= issue.project %></td>
+          <% end %>
           <td><%= issue.departement %></td>
           <td><%= issue.time_forecast %></td>
           <td><%= issue.time_real %></td>
