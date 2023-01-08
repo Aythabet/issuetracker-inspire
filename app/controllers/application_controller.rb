@@ -11,4 +11,5 @@ class ApplicationController < ActionController::Base
   def previous_page
     redirect_to(request.env['HTTP_REFERER'])
   end
+
 end

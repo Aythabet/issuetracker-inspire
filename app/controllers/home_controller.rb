@@ -1,13 +1,23 @@
 class HomeController < ApplicationController
   require 'net/http'
   require 'uri'
-  require 'json'
 
   def index
   end
 
   def jira
-    url = URI.parse("https://agenceinspire.atlassian.net/rest/api/latest/users")
+    @collected_projects = []
+    get_projects(0)
+    get_projects(50)
+  end
+
+  def issues
+  end
+
+  private
+
+  def get_projects(start)
+    url = URI.parse("https://agenceinspire.atlassian.net/rest/api/3/project/search?startAt=#{start}&maxResults=50")
     headers = {
       'Authorization' =>  "Basic #{ENV['JIRA_API_TOKEN']}",
       'Content-Type' => 'application/json'
@@ -19,17 +29,18 @@ class HomeController < ApplicationController
       http.request(request)
     end
 
-    @response_output_issues = JSON.parse(response.body)
-
-    @collected_users = []
-    i = 0
-    while i < @response_output_issues.length
-      @jira_user_name = @response_output_issues[i]["displayName"]
-      @collected_users << @jira_user_name
-      i += 1
-    end
+    response_output_issues = JSON.parse(response.body)
+    collect_projects(response_output_issues)
   end
 
-  def issues
+  def collect_projects(output_array)
+    i = 0
+    while i < output_array["values"].length
+      @project_key = output_array["values"][i]["key"]
+      @project_name = output_array["values"][i]["name"]
+      @project_jira_link = output_array["values"][i]["self"]
+      @collected_projects << [@project_key, @project_name, @project_jira_link]
+      i += 1
+    end
   end
 end
