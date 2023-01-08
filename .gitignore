@@ -36,5 +36,3 @@
 
 # Ignore application configuration
 /config/application.yml
-/IssueProjectHelperFile.txt
-/db/migrate/help.txt
