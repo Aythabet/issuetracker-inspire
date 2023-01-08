@@ -19,16 +19,28 @@
     <div class="container">
       <%= render 'layouts/navbar' %>
       <% if notice %>
-        <p class="alert alert-success"><%= notice %></p>
+        <p class="close alert alert-success"><%= notice %></p>
       <% end %>
       <% if alert %>
-        <p class="alert alert-danger"><%= alert %></p>
+        <p class="close alert alert-danger"><%= alert %></p>
       <% end %>
       <br/>
       <%= yield %>
       <br/>
     </div>
-    <!-- Optional JavaScript -->
+    <!-- Close Alerts Script -->
+    <script>
+      $(document).ready(function(){
+        setTimeout(function() {
+          const alerts = document.querySelectorAll('.alert');
+          alerts.forEach(function(alert) {
+            $(alert).fadeOut(1000, function() {
+              $(this).remove();
+            });
+          });
+        }, 1500);
+      });
+    </script>
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>

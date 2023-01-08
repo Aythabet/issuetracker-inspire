@@ -29,8 +29,8 @@
             <% end %>
           </td>
           <td><%= issue.jiraid %></td>
-          <td><%= link_to issue.project, @project_link %></td>
-          <td><%= link_to issue.owner, @owner_link %></td>
+          <td><%= link_to issue.project, Project.find_by(name: issue.project) %></td>
+          <td><%= link_to issue.owner, Owner.find_by(name: issue.owner) %></td>
           <td><%= issue.departement %></td>
           <td><%= issue.time_forecast %></td>
           <td><%= issue.time_real %></td>

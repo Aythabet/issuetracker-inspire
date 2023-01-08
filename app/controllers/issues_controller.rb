@@ -1,6 +1,7 @@
 class IssuesController < ApplicationController
   require 'net/http'
   require 'uri'
+  require 'json'
 
   before_action :define_issue , only: [:show]
 
@@ -39,7 +40,7 @@ class IssuesController < ApplicationController
 
   def show
     issue_details_from_jira
-    if @response_output_issues.is_a?(Hash)
+    if @response_output_issues.has_key?("errors")
       flash.alert = "Please check if #{@issue.jiraid} exists and is available on JIRA"
       @api_issuekey = "No data from the API."
       @api_time_spent = "No data from the API."
