@@ -92,7 +92,7 @@ end
 p("Projects listed....")
 
 
-# Collect Projects in data base
+# Collect Projects in data base for issues generation // Delete this when starting the official issues
 projects_array = []
 Project.all.each do |project|
   projects_array << [ project[:jiraid] , project[:name] ]
@@ -115,16 +115,20 @@ end
 
 p("Issues seeded!")
 
-#Seed the user table from the team members table
-#users_array = []
-#User.all.each do |user|
-#  users_array << [ user[:name] , user[:email] ]
-#end
 
 User.create!({:email => "admin@inspiregroup.io", :password => "azertyu", :password_confirmation => "azertyu", :admin => true})
 p("User admin@inspiregroup.io created...")
 
-User.create!({:email => "ayoub.benthabet@inspiregroup.io", :password => "azertyu", :password_confirmation => "azertyu", :admin => false})
+CSV.foreach("db/jira_users.csv") do |row|
+  user = User.create([
+                       {
+                         "email": row[2],
+                         "password": "azertyu",
+                         "password_confirmation": "azertyu",
+                         "admin": false
+                       }
+  ]);
+end
 
-p("User ayoub.benthabet@inspiregroup.io created...")
+p("Users database seeded: login: your Inspire email / password: azertyu ")
 p("Database seeded with success!")

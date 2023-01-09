@@ -65,4 +65,5 @@ class OwnersController < ApplicationController
     @owner = Owner.find(params[:id])
     @issuesowner = Issue.where(owner: @owner.name)
   end
+
 end
