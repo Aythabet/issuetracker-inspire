@@ -1,4 +1,12 @@
-<h2><%= @owner.name %> - Dashboard</h2>
+<div class="d-flex" style="justify-content: space-between;">
+  <h2><%= @owner.name %><% if current_user.email == @owner.email %></h2>
+    <div align="right">
+      <%= link_to 'Update my profile details', edit_owner_path(@owner), type:"button", class:"btn btn-light" %></h2>
+    <%= link_to 'Update my password', edit_user_registration_path, type:"button", class:"btn btn-light" %></h2>
+</div>
+<% end %>
+</div>
+<br/>
 <br/>
 <div class="d-flex justify-content-around">
   <div align="middle" class="card" style="width: 12rem;">

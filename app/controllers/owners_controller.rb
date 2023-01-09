@@ -19,8 +19,25 @@ class OwnersController < ApplicationController
   end
 
   def edit
-    admin_only_access
     @owner = Owner.find(params[:id])
+    if current_user.email == @owner.email
+      @owner
+    else
+      admin_only_access
+    end
+  end
+
+  def update
+    @owner = Owner.find(params[:id])
+    if current_user.email == @owner.email
+      if @owner.update(owner_params)
+        redirect_to owner_path(@owner)
+      else
+        render :edit, status: :unprocessable_entity
+      end
+    else
+      admin_only_access
+    end
   end
 
   def show
@@ -33,16 +50,6 @@ class OwnersController < ApplicationController
     end
   end
 
-  def update
-    admin_only_access
-    @owner = Owner.find(params[:id])
-
-    if @owner.update(owner_params)
-      redirect_to owners_path
-    else
-      render :edit, status: :unprocessable_entity
-    end
-  end
 
   def destroy
     if current_user.admin == true
