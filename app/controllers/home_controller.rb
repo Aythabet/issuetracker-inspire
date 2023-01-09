@@ -6,12 +6,6 @@ class HomeController < ApplicationController
   end
 
   def jira
-    @collected_projects = []
-    get_projects(0)
-    get_projects(50)
-  end
-
-  def issues
   end
 
   private

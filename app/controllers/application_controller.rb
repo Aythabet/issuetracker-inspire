@@ -12,4 +12,5 @@ class ApplicationController < ActionController::Base
     redirect_to(request.env['HTTP_REFERER'])
   end
 
+
 end
