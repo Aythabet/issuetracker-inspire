@@ -60,4 +60,6 @@
       <% end %>
     </tbody>
   </table>
+  <div align="right" style="font-size: 80%"><%= page_entries_info @projectissues, entry_name: 'issues' %></div>
+  <span class="d-flex flex-row-reverse"><%= link_to_next_page @projectissues, 'Next' %>&nbsp;&nbsp;<%= link_to_previous_page @projectissues, 'Previous' %></span>
 </div>

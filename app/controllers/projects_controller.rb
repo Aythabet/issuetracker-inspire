@@ -57,6 +57,6 @@ class ProjectsController < ApplicationController
 
   def define_owner
     @project = Project.find(params[:id])
-    @projectissues = Issue.where(project: @project.name)
+    @projectissues = Issue.where(project: @project.name).order(created_at: :desc).page params[:page]
   end
 end

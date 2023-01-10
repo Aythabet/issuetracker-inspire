@@ -32,10 +32,11 @@
       <% end %>
     </tbody>
   </table>
+  <div align="right" style="font-size: 80%"><%= page_entries_info @owners, entry_name: 'team members' %></div>
   <span class="d-flex flex-row-reverse"><%= link_to_next_page @owners, 'Next' %>&nbsp;&nbsp;<%= link_to_previous_page @owners, 'Previous' %></span>
 </div>
 <br/>
 <br/>
 <%= link_to new_owner_path do %>
-  <button type="button" class="btn btn-success btn-lg btn-block">Add a new owner</button>
+  <button type="button" class="btn btn-success btn-lg btn-block">Add a new member</button>
 <% end %>

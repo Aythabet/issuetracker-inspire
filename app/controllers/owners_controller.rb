@@ -9,7 +9,6 @@ class OwnersController < ApplicationController
   end
 
   def create
-    admin_only_access
     @owner = Owner.new(owner_params)
     if @owner.save
       redirect_to owners_path
@@ -29,48 +28,40 @@ class OwnersController < ApplicationController
 
   def update
     @owner = Owner.find(params[:id])
-    if current_user.email == @owner.email
-      if @owner.update(owner_params)
-        redirect_to owner_path(@owner)
-      else
-        render :edit, status: :unprocessable_entity
-      end
+    if @owner.update(owner_params)
+      redirect_to owners_path
     else
-      admin_only_access
+      render :edit, status: :unprocessable_entity
     end
   end
 
   def show
-    define_project
+    @owners = Owner.all.order(created_at: :desc).page params[:page]
+    define_owner
     @total_estimation = 0
-    @total_real  = 0
+    @total_real = 0
     @issuesowner.each do |owner|
-      @total_estimation = @total_estimation + owner.time_forecast
-      @total_real = @total_real + owner.time_real
+      @total_estimation += owner.time_forecast
+      @total_real += owner.time_real
     end
   end
 
-
   def destroy
-    if current_user.admin == true
-      @owner = Owner.find(params[:id])
-      @owner.destroy
-      redirect_to owners_path
-    else
-      flash.alert = "Admin access only"
-      previous_page
-    end
+    return unless current_user.admin?
+
+    @owner = Owner.find(params[:id])
+    @owner.destroy
+    redirect_to owners_path
   end
 
   private
 
   def owner_params
-    params.require(:owner).permit(:name, :departement, :jiraid, :email, :status, :date_joined_jira, :last_seen_on_jira, )
+    params.require(:owner).permit(:name, :departement, :jiraid, :email, :status, :date_joined_jira, :last_seen_on_jira)
   end
 
-  def define_project
+  def define_owner
     @owner = Owner.find(params[:id])
-    @issuesowner = Issue.where(owner: @owner.name)
+    @issuesowner = Issue.where(owner: @owner.name).order(created_at: :desc).page params[:page]
   end
-
 end

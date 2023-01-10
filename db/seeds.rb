@@ -1,7 +1,7 @@
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
 require 'securerandom'
-require "csv"
+require 'csv'
 require 'net/http'
 require 'uri'
 
@@ -10,56 +10,57 @@ Project.destroy_all
 Owner.destroy_all
 Departement.destroy_all
 
-p("Database dropped...")
+p('Database dropped...')
 
-departement = Departement.create([{
-                                    "name": "Backend"
-                                  },
-                                  {
-                                    "name": "Frontend"
-                                  },
-                                  {
-                                    "name": "Project Management"
-                                  },
-                                  {
-                                    "name": "DevOps"
-                                  },
-                                  {
-                                    "name": "Design"
-                                  },
-                                  {
-                                    "name": "Rédaction"
-                                  }
-                                  ]);
+Departement.create([{
+                      'name': 'Backend'
+                    },
+                    {
+                      'name': 'Frontend'
+                    },
+                    {
+                      'name': 'Project Management'
+                    },
+                    {
+                      'name': 'DevOps'
+                    },
+                    {
+                      'name': 'Design'
+                    },
+                    {
+                      'name': 'Rédaction'
+                    }
+                    ]);
 
-p("Departement seeded!")
+p('Departement seeded!')
 
-CSV.foreach("db/jira_users.csv") do |row|
-  owner = Owner.create([
-                         {
-                           "departement": Departement.all.sample.name,
-                           "jiraid": row[0],
-                           "name": row[1],
-                           "email": row[2],
-                           "status": row[3],
-                           "date_joined_jira":  row[4],
-                           "last_seen_on_jira": row[6]
-                         }
+Owner.create!({:name => 'Super Admin', :email => 'admin@inspiregroup.io', :departement => 'DevOps'})
+CSV.foreach('db/jira_users.csv') do |row|
+  Owner.create([
+                 {
+                   'departement': Departement.all.sample.name,
+                   'jiraid': row[0],
+                   'name': row[1],
+                   'email': row[2],
+                   'status': row[3],
+                   'date_joined_jira':  row[4],
+                   'last_seen_on_jira': row[6]
+                 }
   ]);
 end
 
-p("JIRA Users imported seeded!")
-p("Team members generated...")
+p('JIRA Users imported...!')
+p('Team members generated...')
 
 # Import Projects from Jira and seeds the DB with their values
 @collected_projects = []
 
 def collect_projects(output_array)
   i = 0
-  while i < output_array["values"].length
-    project_key = output_array["values"][i]["key"]
-    project_name = output_array["values"][i]["name"]
-    project_jira_link = output_array["values"][i]["self"]
+  while i < output_array['values'].length
+    project_key = output_array['values'][i]['key']
+    project_name = output_array['values'][i]['name']
+    project_jira_link = output_array['values'][i]['self']
     @collected_projects << [project_key, project_name, project_jira_link]
     i += 1
   end
@@ -89,16 +90,16 @@ get_projects(50)
   Project.create([{'name': project[1], 'jiraid': project[0], 'link': project[2]}])
 end
 
-p("Projects listed....")
+p('Projects listed....')
 
 
 # Collect Projects in data base for issues generation // Delete this when starting the official issues
 projects_array = []
 Project.all.each do |project|
-  projects_array << [ project[:jiraid] , project[:name] ]
+  projects_array << [project[:jiraid] , project[:name] ]
 end
 
-p("Projects table generated...")
+p('Projects table generated...')
 
 projects_array.each do |key, name|
   10.times do
@@ -113,22 +114,21 @@ projects_array.each do |key, name|
   end
 end
 
-p("Issues seeded!")
+p('Issues seeded!')
 
+User.create!({:email => 'admin@inspiregroup.io', :password => 'azertyu', :password_confirmation => 'azertyu', :admin => true})
+p('User admin@inspiregroup.io created...')
 
-User.create!({:email => "admin@inspiregroup.io", :password => "azertyu", :password_confirmation => "azertyu", :admin => true})
-p("User admin@inspiregroup.io created...")
-
-CSV.foreach("db/jira_users.csv") do |row|
-  user = User.create([
-                       {
-                         "email": row[2],
-                         "password": "azertyu",
-                         "password_confirmation": "azertyu",
-                         "admin": false
-                       }
+CSV.foreach('db/jira_users.csv') do |row|
+  User.create([
+                {
+                  'email': row[2],
+                  'password': 'azertyu',
+                  'password_confirmation': 'azertyu',
+                  'admin': false
+                }
   ]);
 end
 
-p("Users database seeded: login: your Inspire email / password: azertyu ")
-p("Database seeded with success!")
+p('Users database seeded: login: your Inspire email / password: azertyu ')
+p('Database seeded with success!')

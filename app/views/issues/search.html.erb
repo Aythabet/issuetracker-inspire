@@ -34,4 +34,6 @@
       <% end %>
     </tbody>
   </table>
+  <div align="right" style="font-size: 80%"><%= page_entries_info @results, entry_name: 'issue' %></div>
+  <span class="d-flex flex-row-reverse"><%= link_to_next_page @results, 'Next' %>&nbsp;&nbsp;<%= link_to_previous_page @results, 'Previous' %></span>
 </div>
