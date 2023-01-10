@@ -10,6 +10,7 @@
         <th scope="col">Email</th>
         <th scope="col">Status</th>
         <th scope="col">Last Seen On Jira</th>
+        <th scope="col">Date joined JIRA</th>
         <th scope="col"></th>
       </tr>
     </thead>
@@ -18,9 +19,10 @@
         <tr>
           <td align="middle"><%= link_to '<i class="bi bi-eye-fill" style="font-size: 1.15rem;""></i>'.html_safe, owner %></td>
           <td><%= owner.name %></td>
-          <td><%= owner.email %></td>
+          <td><%= owner.user.email %></td>
           <td><%= owner.status %></td>
           <td><%= owner.last_seen_on_jira %></td>
+          <td><%= owner.date_joined_jira %></td>
           <% if current_user.admin == true %>
             <td align="middle">
               <%= link_to '<i class="bi bi-pencil-square"></i>'.html_safe, edit_owner_path(owner) %>

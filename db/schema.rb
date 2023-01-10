@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_01_10_175206) do
+ActiveRecord::Schema[7.0].define(version: 2023_01_10_180911) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -39,11 +39,12 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_10_175206) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "jiraid"
-    t.string "email"
     t.string "status"
     t.string "date_joined_jira"
     t.string "last_seen_on_jira"
     t.string "departement"
+    t.bigint "user_id"
+    t.index ["user_id"], name: "index_owners_on_user_id"
   end
 
   create_table "projects", force: :cascade do |t|
@@ -69,4 +70,5 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_10_175206) do
 
   add_foreign_key "issues", "owners"
   add_foreign_key "issues", "projects"
+  add_foreign_key "owners", "users"
 end

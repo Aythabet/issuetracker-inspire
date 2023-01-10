@@ -19,7 +19,7 @@ class OwnersController < ApplicationController
 
   def edit
     define_owner
-    if current_user.email == @owner.email
+    if current_user.email == @owner.user.email
       @owner
     else
       admin_only_access
@@ -56,7 +56,7 @@ class OwnersController < ApplicationController
   private
 
   def owner_params
-    params.require(:owner).permit(:name, :departement, :jiraid, :email, :status, :date_joined_jira, :last_seen_on_jira)
+    params.require(:owner).permit(:name, :departement, :jiraid, :status, :date_joined_jira, :last_seen_on_jira)
   end
 
   def define_owner
