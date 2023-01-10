@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_01_10_180911) do
+ActiveRecord::Schema[7.0].define(version: 2023_01_10_192733) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -18,6 +18,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_10_180911) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "owner_id"
+    t.index ["owner_id"], name: "index_departements_on_owner_id"
   end
 
   create_table "issues", force: :cascade do |t|
@@ -44,6 +46,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_10_180911) do
     t.string "last_seen_on_jira"
     t.string "departement"
     t.bigint "user_id"
+    t.bigint "departement_id"
+    t.index ["departement_id"], name: "index_owners_on_departement_id"
     t.index ["user_id"], name: "index_owners_on_user_id"
   end
 

@@ -100,8 +100,6 @@ class IssuesController < ApplicationController
 
   def define_issue
     @issue = Issue.find(params[:id])
-    @project = Project.find_by(name: @issue.project)
-    @owner = Owner.find_by(name: @issue.owner)
   end
 
   def no_api_reponse

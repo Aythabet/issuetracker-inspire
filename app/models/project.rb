@@ -6,9 +6,4 @@ class Project < ApplicationRecord
 
   validates :jiraid, :name, uniqueness: true
   validates :jiraid, format: { with:/\A[a-zA-Z\d]{2,6}\z/, message: "must follow this format az-AZ" }
-
-  def jira_id_and_project
-    "#{jiraid}   -  #{name} "
-  end
-
 end
