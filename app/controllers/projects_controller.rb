@@ -52,7 +52,7 @@ class ProjectsController < ApplicationController
   private
 
   def project_params
-    params.require(:project).permit(:name, :jiraid)
+    params.require(:project).permit(:name, :jiraid, :link)
   end
 
   def define_owner

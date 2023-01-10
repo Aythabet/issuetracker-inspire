@@ -1,24 +1,15 @@
 <%= simple_form_for @issue do |f| %>
-
-  <%= f.input :project, label: 'Please select a project', collection: Project.all, label_method: :name, value_method: :name  %>
-
+  <%= f.input :project, label: 'Please select a project', collection: Project.all, label_method: :jira_id_and_project, value_method: :name  %>
   <%= f.input :jiraid, label: 'Enter the JIRA ID'%>
-   <br/>
-
-   <div class="custom-control custom-switch">
-      <%= f.check_box :retour_test, class: "custom-control-input", id: "customSwitch1"   %>
-      <label class="custom-control-label" for="customSwitch1"> <i class="bi bi-bug" style="font-size: 1.15rem;""></i> Retour tests </label>
-   </div>
-   <br/>
-
+  <br/>
+  <div class="custom-control custom-switch">
+    <%= f.check_box :retour_test, class: "custom-control-input", id: "customSwitch1"   %>
+    <label class="custom-control-label" for="customSwitch1"> <i class="bi bi-bug" style="font-size: 1.15rem;""></i> Retour tests </label>
+  </div>
+  <br/>
   <%= f.input :owner, label: "Select a team member", collection: Owner.all, label_method: :name, value_method: :name %>
-
   <%= f.input :departement, label: "Select departement", collection: Departement.all, label_method: :name, value_method: :name %>
-
   <%= f.input :time_forecast, label: 'Input the time estimation'%>
-
   <%= f.input :time_real, label: 'Input the real time spent on the issue'%>
-
   <%= f.button :submit %>
-
 <% end %>

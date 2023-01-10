@@ -41,34 +41,15 @@ class IssuesController < ApplicationController
     issue_details_from_jira
     if @response_output_issues.has_key?('errors')
       flash.alert = "Please check if #{@issue.jiraid} exists and is available on JIRA"
-      @api_issuekey = 'No data from the API.'
-      @api_time_spent = 'No data from the API.'
-      @api_time_estimate = 'No data from the API.'
-      @api_remaining_estimate = 'No data from the API.'
-      @api_project_name = 'No data from the API.'
-      @api_date_created = 'No data from the API.'
-      @api_display_name = 'No data from the API.'
-      @api_status = 'No data from the API.'
-      @api_issue_creator = 'No data from the API.'
-      @api_summary = 'No data from the API.'
+      no_api_reponse
     else
-      @api_issuekey = @response_output_issues['key']
-      @api_time_spent = @response_output_issues['fields']['timespent']
-      @api_time_estimate = @response_output_issues['fields']['originalEstimate']
-      @api_remaining_estimate= @response_output_issues['fields']['timetracking']['remainingEstimate']
-      @api_project_name = @response_output_issues['fields']['project']['name']
-      @api_date_created = @response_output_issues['fields']['created']
-      @api_display_name = @response_output_issues['fields']['assignee']['displayName']
-      @api_status = @response_output_issues['fields']['status']['name']
-      @api_issue_creator = @response_output_issues['fields']['creator']['displayName']
-      @api_summary = @response_output_issues['fields']['summary']
+      yes_api_response
     end
   end
 
   def update
     admin_only_access
     @issue = Issue.find(params[:id])
-
     if @issue.update(issue_params)
       redirect_to issues_path
     else
@@ -77,10 +58,10 @@ class IssuesController < ApplicationController
   end
 
   def destroy
-    if current_user.admin == true
+    if current_user.admin?
       @issue = Issue.find(params[:id])
       @issue.destroy
-      redirect_to root_path
+      previous_page
     else
       flash.alert = 'Admin access only'
       previous_page
@@ -116,4 +97,30 @@ class IssuesController < ApplicationController
     @owner = Owner.find_by(name: @issue.owner)
   end
 
+  def no_api_reponse
+    @api_issuekey = 'No data from the API.'
+    @api_time_spent = 'No data from the API.'
+    @api_time_estimate = 'No data from the API.'
+    @api_remaining_estimate = 'No data from the API.'
+    @api_project_name = 'No data from the API.'
+    @api_date_created = 'No data from the API.'
+    @api_display_name = 'No data from the API.'
+    @api_status = 'No data from the API.'
+    @api_issue_creator = 'No data from the API.'
+    @api_summary = 'No data from the API.'
+  end
+
+
+  def yes_api_response
+    @api_issuekey = @response_output_issues['key']
+    @api_time_spent = @response_output_issues['fields']['timespent']
+    @api_time_estimate = @response_output_issues['fields']['originalEstimate']
+    @api_remaining_estimate= @response_output_issues['fields']['timetracking']['remainingEstimate']
+    @api_project_name = @response_output_issues['fields']['project']['name']
+    @api_date_created = @response_output_issues['fields']['created']
+    @api_display_name = @response_output_issues['fields']['assignee']['displayName']
+    @api_status = @response_output_issues['fields']['status']['name']
+    @api_issue_creator = @response_output_issues['fields']['creator']['displayName']
+    @api_summary = @response_output_issues['fields']['summary']
+  end
 end

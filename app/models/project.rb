@@ -1,10 +1,14 @@
 class Project < ApplicationRecord
-	max_paginates_per 10
+  max_paginates_per 10
 
-	before_create { |project| project.jiraid = project.jiraid.upcase }
-	before_create { |project| project.name = project.name.titleize }
+  before_create { |project| project.jiraid = project.jiraid.upcase }
+  before_create { |project| project.name = project.name.titleize }
 
-	validates :jiraid, :name, uniqueness: true
-  	validates :jiraid, format: { with:/\A[a-zA-Z\d]{2,6}\z/, message: "must follow this format az-AZ" }
+  validates :jiraid, :name, uniqueness: true
+  validates :jiraid, format: { with:/\A[a-zA-Z\d]{2,6}\z/, message: "must follow this format az-AZ" }
+
+  def jira_id_and_project
+    "#{jiraid}   -  #{name} "
+  end
 
 end
