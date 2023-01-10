@@ -39,7 +39,7 @@ class IssuesController < ApplicationController
 
   def show
     issue_details_from_jira
-    if @response_output_issues.has_key?('errors')
+    if @response_output_issues.key?('errors')
       flash.alert = "Please check if #{@issue.jiraid} exists and is available on JIRA"
       no_api_reponse
     else
@@ -61,17 +61,16 @@ class IssuesController < ApplicationController
     if current_user.admin?
       @issue = Issue.find(params[:id])
       @issue.destroy
-      previous_page
     else
       flash.alert = 'Admin access only'
-      previous_page
     end
+    previous_page
   end
 
   private
 
   def issue_params
-    params.require(:issue).permit(:jiraid, :project, :owner, :time_forecast, :time_real,:departement, :retour_test)
+    params.require(:issue).permit(:jiraid, :project_id, :owner, :time_forecast, :time_real, :departement, :retour_test)
   end
 
   def issue_details_from_jira

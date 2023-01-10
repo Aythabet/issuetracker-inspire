@@ -96,16 +96,16 @@ p('Projects listed....')
 # Collect Projects in data base for issues generation // Delete this when starting the official issues
 projects_array = []
 Project.all.each do |project|
-  projects_array << [project[:jiraid] , project[:name] ]
+  projects_array << [project[:jiraid] , project[:id]]
 end
 
 p('Projects table generated...')
 
-projects_array.each do |key, name|
+projects_array.each do |key, id|
   10.times do
     Issue.create(
       jiraid: "#{key}-#{SecureRandom.random_number(999)}",
-      project: "#{name}",
+      project: Project.find_by(id:),
       owner: Owner.all.sample.name,
       departement: Departement.all.sample.name,
       time_real: rand(1..20),

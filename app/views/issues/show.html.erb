@@ -21,7 +21,7 @@
             <%= '<i class="bi bi-hammer" style="font-size: 1.15rem;""></i>'.html_safe %>
           <% end %></td>
         <td><%= @issue.jiraid %></td>
-        <td><%= link_to @issue.project, @project %></td>
+        <td><%= link_to @issue.project.name, @issue.project %></td>
         <td><%= link_to @issue.owner, @owner %></td>
         <td><%= @issue.departement %></td>
         <td><%= @issue.time_forecast %></td>
