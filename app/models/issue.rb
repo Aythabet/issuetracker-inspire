@@ -1,5 +1,6 @@
 class Issue < ApplicationRecord
   belongs_to :project
+  belongs_to :owner
   max_paginates_per 10
 
   before_create { |issue| issue.jiraid = issue.jiraid.upcase }
@@ -25,8 +26,6 @@ class Issue < ApplicationRecord
 
   def check_jiraid_project_match
     first_part = jiraid.upcase.match(/\b[a-zA-Z]{2,4}/)[0]
-    p("----------------------#{first_part}")
-    p("----------------------#{project_id}")
     reference_project_jiraid = Project.find_by(id: project_id).jiraid
     unless first_part == reference_project_jiraid
       errors.add(:jiraid, "Please verify that you have the right project")

@@ -70,7 +70,15 @@ class IssuesController < ApplicationController
   private
 
   def issue_params
-    params.require(:issue).permit(:jiraid, :project_id, :owner, :time_forecast, :time_real, :departement, :retour_test)
+    params.require(:issue).permit(
+      :jiraid,
+      :project_id,
+      :owner_id,
+      :time_forecast,
+      :time_real,
+      :departement,
+      :retour_test
+    )
   end
 
   def issue_details_from_jira

@@ -52,7 +52,7 @@
               <%= '<i class="bi bi-hammer" style="font-size: 1.15rem;""></i>'.html_safe %>
             <% end %>
           </td>
-          <td><%= link_to issue.owner, Owner.find_by(name: issue.owner)%></td>
+          <td><%= link_to issue.owner.name, issue.owner%></td>
           <td><%= issue.departement %></td>
           <td><%= issue.time_forecast %></td>
           <td><%= issue.time_real %></td>

@@ -7,7 +7,7 @@
     <label class="custom-control-label" for="customSwitch1"> <i class="bi bi-bug" style="font-size: 1.15rem;""></i> Retour tests </label>
   </div>
   <br/>
-  <%= f.input :owner, label: "Select a team member", collection: Owner.all, label_method: :name, value_method: :name %>
+  <%= f.association :owner %>
   <%= f.input :departement, label: "Select departement", collection: Departement.all, label_method: :name, value_method: :name %>
   <%= f.input :time_forecast, label: 'Input the time estimation'%>
   <%= f.input :time_real, label: 'Input the real time spent on the issue'%>

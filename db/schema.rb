@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_01_10_165801) do
+ActiveRecord::Schema[7.0].define(version: 2023_01_10_175206) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -22,7 +22,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_10_165801) do
 
   create_table "issues", force: :cascade do |t|
     t.string "jiraid"
-    t.string "owner"
     t.float "time_forecast"
     t.float "time_real"
     t.string "departement"
@@ -30,6 +29,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_10_165801) do
     t.datetime "updated_at", null: false
     t.boolean "retour_test"
     t.bigint "project_id"
+    t.bigint "owner_id"
+    t.index ["owner_id"], name: "index_issues_on_owner_id"
     t.index ["project_id"], name: "index_issues_on_project_id"
   end
 
@@ -66,5 +67,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_10_165801) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "issues", "owners"
   add_foreign_key "issues", "projects"
 end

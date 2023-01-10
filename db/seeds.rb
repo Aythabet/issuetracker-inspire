@@ -106,7 +106,7 @@ projects_array.each do |key, id|
     Issue.create(
       jiraid: "#{key}-#{SecureRandom.random_number(999)}",
       project: Project.find_by(id:),
-      owner: Owner.all.sample.name,
+      owner: Owner.all.sample,
       departement: Departement.all.sample.name,
       time_real: rand(1..20),
       time_forecast: rand(1..20)

@@ -18,7 +18,7 @@ class OwnersController < ApplicationController
   end
 
   def edit
-    @owner = Owner.find(params[:id])
+    define_owner
     if current_user.email == @owner.email
       @owner
     else
@@ -36,11 +36,10 @@ class OwnersController < ApplicationController
   end
 
   def show
-    @owners = Owner.all.order(created_at: :desc).page params[:page]
     define_owner
     @total_estimation = 0
     @total_real = 0
-    @issuesowner.each do |owner|
+    @owner.issues.each do |owner|
       @total_estimation += owner.time_forecast
       @total_real += owner.time_real
     end
@@ -62,6 +61,5 @@ class OwnersController < ApplicationController
 
   def define_owner
     @owner = Owner.find(params[:id])
-    @issuesowner = Issue.where(owner: @owner.name).order(created_at: :desc).page params[:page]
   end
 end

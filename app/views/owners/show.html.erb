@@ -12,7 +12,7 @@
   <div align="middle" class="card" style="width: 12rem;">
     <div class="card-body">
       <h5 class="card-title">Nombre de Tickets</h5>
-      <p class="card-text"><%= @issuesowner.count %></p>
+      <p class="card-text"><%= @owner.issues.count %></p>
     </div>
   </div>
   <div align="middle" class="card" style="width: 12rem;">
@@ -50,7 +50,7 @@
       </tr>
     </thead>
     <tbody>
-      <% @issuesowner.each do |issue| %>
+      <% @owner.issues.each do |issue| %>
         <tr>
           <td>
             <%= link_to issue.jiraid, issue %>
@@ -80,6 +80,4 @@
       <% end %>
     </tbody>
   </table>
-  <div align="right" style="font-size: 80%"><%= page_entries_info @issuesowner, entry_name: 'issue' %></div>
-  <span class="d-flex flex-row-reverse"><%= link_to_next_page @issuesowner, 'Next' %>&nbsp;&nbsp;<%= link_to_previous_page @issuesowner, 'Previous' %></span>
 </div>

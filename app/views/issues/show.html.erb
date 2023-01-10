@@ -22,7 +22,7 @@
           <% end %></td>
         <td><%= @issue.jiraid %></td>
         <td><%= link_to @issue.project.name, @issue.project %></td>
-        <td><%= link_to @issue.owner, @owner %></td>
+        <td><%= link_to @issue.owner.name, @issue.owner %></td>
         <td><%= @issue.departement %></td>
         <td><%= @issue.time_forecast %></td>
         <td><%= @issue.time_real %></td>
