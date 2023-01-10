@@ -18,22 +18,21 @@ class ProjectsController < ApplicationController
   end
 
   def edit
-    @project = Project.find(params[:id])
+    define_owner
   end
 
   def show
     define_owner
     @total_estimation = 0
-    @total_real  = 0
-    @projectissues.each do |issue|
+    @total_real = 0
+    @project.issues.each do |issue|
       @total_estimation = @total_estimation + issue.time_forecast
       @total_real = @total_real + issue.time_real
     end
   end
 
   def update
-    @project = Project.find(params[:id])
-
+    define_owner
     if @project.update(project_params)
       redirect_to projects_path
     else
@@ -42,7 +41,7 @@ class ProjectsController < ApplicationController
   end
 
   def destroy
-    @project = Project.find(params[:id])
+    define_owner
     @project.destroy
 
     redirect_to projects_path
@@ -57,6 +56,5 @@ class ProjectsController < ApplicationController
 
   def define_owner
     @project = Project.find(params[:id])
-    @projectissues = Issue.where(project: @project.name).order(created_at: :desc).page params[:page]
   end
 end

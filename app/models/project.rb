@@ -1,5 +1,5 @@
 class Project < ApplicationRecord
-  max_paginates_per 10
+  has_many :issues
 
   before_create { |project| project.jiraid = project.jiraid.upcase }
   before_create { |project| project.name = project.name.titleize }

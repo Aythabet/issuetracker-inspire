@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_01_08_202028) do
+ActiveRecord::Schema[7.0].define(version: 2023_01_10_180911) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -22,14 +22,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_08_202028) do
 
   create_table "issues", force: :cascade do |t|
     t.string "jiraid"
-    t.string "project"
-    t.string "owner"
     t.float "time_forecast"
     t.float "time_real"
     t.string "departement"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "retour_test"
+    t.bigint "project_id"
+    t.bigint "owner_id"
+    t.index ["owner_id"], name: "index_issues_on_owner_id"
+    t.index ["project_id"], name: "index_issues_on_project_id"
   end
 
   create_table "owners", force: :cascade do |t|
@@ -37,11 +39,12 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_08_202028) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "jiraid"
-    t.string "email"
     t.string "status"
     t.string "date_joined_jira"
     t.string "last_seen_on_jira"
     t.string "departement"
+    t.bigint "user_id"
+    t.index ["user_id"], name: "index_owners_on_user_id"
   end
 
   create_table "projects", force: :cascade do |t|
@@ -65,4 +68,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_08_202028) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "issues", "owners"
+  add_foreign_key "issues", "projects"
+  add_foreign_key "owners", "users"
 end

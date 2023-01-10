@@ -1,37 +1,30 @@
-User id,User name,email,User status,Added to org,Org role,Last seen in Jira Software - agenceinspire,Last seen in Confluence - agenceinspire,Group membership
-61e828d785a2d60070564421,tarek,t.krichen@agence-inspire.com,Active,13 Jun 2022,None,28 Nov 2022,Never accessed,jira-software-users
-6164157d78e5e40070c0be4b,salah Omri,salah.omri@agence-inspire.com,Active,11 Oct 2021,None,6 Jan 2023,15 Oct 2021,"confluence-users,jira-software-users"
-628b8d4d1a437e0070417b13,malak guetat,malak.guetat@agence-inspire.com,Active,23 May 2022,None,20 Dec 2022,13 Dec 2022,"InsireProdTeam,confluence-users,jira-software-users"
-5e4fe5cec8ec310c955be8cb,Abderrahmen Boussoukaya,abderrahmen.boussoukaya@agence-inspire.com,Active,15 Jul 2020,None,4 Jan 2023,26 Oct 2021,"InsireProdTeam,confluence-users,jira-software-users"
-62b457a89abb660ab14c0786,Mey Amanouel,mey@acropolia.academy,Active,23 Jun 2022,None,24 Jun 2022,Never accessed,"confluence-users,jira-software-users"
-631f26dfb0ac1ba7b871194b,sifaouimaarwa,sifaouimaarwa@gmail.com,Active,12 Sep 2022,None,Never accessed,Never accessed,"confluence-users,jira-software-users"
-637caf2b77acd224b33e10a6,kadri yassine,yassine.kadri@agence-inspire.com,Active,22 Nov 2022,None,6 Jan 2023,Never accessed,"InsireProdTeam,confluence-users,jira-software-users"
-62ea44823cc20c06c8aeca81,bob,bob@agence-inspire.com,Active,3 Aug 2022,None,Never accessed,Never accessed,"InsireProdTeam,jira-software-users"
-5e3984f4caf29f0cb8df84c3,Rouh El Islem Glida,rouhelislem.glida@agence-inspire.com,Active,17 Feb 2020,Site Admin,6 Jan 2023,6 Dec 2022,"confluence-users,jira-software-users,site-admins"
-557058:af826e8e-f18e-4ea9-9796-205e4d6bb220,Mehdi Louizi,mehdi.louizi@agence-inspire.com,Active,8 Jan 2020,Site Admin,23 Dec 2022,23 Dec 2022,"InsireProdTeam,site-admins"
-6273a5e2d7fd480068d964c0,Fatma Dhambri,f.dhambri@agence-inspire.com,Active,13 Jun 2022,None,6 Jan 2023,Never accessed,"InsireProdTeam,jira-software-users"
-70121:466e01c9-5bf2-4cec-8281-5480ebb0cd92,Esma Ben Said,esma.bensaid@agence-inspire.com,Active,21 Jan 2021,None,29 Apr 2021,Never accessed,"InsireProdTeam,confluence-users,jira-software-users,trusted-users-c4ba4fbd-7018-4dd6-a9e9-78d555470804"
-63886dc177acd224b3418264,Ahlem Chikha,ahlem.chikha@agence-inspire.com,Active,1 Dec 2022,None,6 Jan 2023,Never accessed,"InsireProdTeam,confluence-users,jira-software-users"
-60f5518f1c5777007095ff18,Akrouti bouthaina,bouthayna.akrouti@agence-inspire.com,Active,19 Jul 2021,None,6 Jan 2023,15 Oct 2021,"InsireProdTeam,confluence-users,jira-software-users"
-617fb803f485cd00680ade1c,Sarah Mezrani,sarrah.mezrani@agence-inspire.com,Active,1 Nov 2021,None,6 Jan 2023,12 Sep 2022,"confluence-users,jira-software-users"
-61d2c96268926d0068415a7a,Rami Bellili,rami.bellili@agence-inspire.com,Active,3 Jan 2022,None,6 Jan 2023,19 Aug 2022,"confluence-users,jira-software-users"
-611a37587b538a006963572f,Afif Krayem,afif.krayem@agence-inspire.com,Active,16 Aug 2021,None,6 Jan 2023,5 Jan 2023,"InsireProdTeam,confluence-users,jira-software-users"
-5e3404e53940fb0cad6802c2,Hela Louizi,hela.louizi@agence-inspire.com,Active,31 Jan 2020,Site Admin,7 Jan 2023,24 Oct 2022,"InsireProdTeam,administrators,confluence-users,jira-administrators,jira-software-users,site-admins"
-62bad902c9f2df7b608aa7b1,Administrateur Jira,adminjira@agence-inspire.com,Active,28 Jun 2022,None,19 Jul 2022,Never accessed,"administrators,jira-software-users,trusted-users-c4ba4fbd-7018-4dd6-a9e9-78d555470804"
-615d89cec7bea40069460d8d,Mehdi Ben Braiek,mehdi.benbraiek@agence-inspire.com,Active,6 Oct 2021,None,1 Dec 2022,Never accessed,"InsireProdTeam,confluence-users,jira-software-users"
-5e3406914a55210caae33f0f,Youssef HRIZI,youssef.hrizi@agence-inspire.com,Active,28 Nov 2022,None,6 Jan 2023,26 Jan 2022,"confluence-users,jira-software-users"
-5e2ab805b7c7b40ca5a4f159,Khalil Guesmi,khalil.guesmi@agence-inspire.com,Active,24 Jan 2020,None,6 Jan 2023,5 Jan 2023,"InsireProdTeam,confluence-users,jira-software-users"
-633a97008b75455be457e9f1,ABBASSI MOHAMED TAHAR,tahar.abbassi@agence-inspire.com,Active,3 Oct 2022,None,6 Jan 2023,Never accessed,"InsireProdTeam,jira-software-users"
-61dd54b69ee70a0068bf3564,saif.henchir,saif.henchir@agence-inspire.com,Active,11 Jan 2022,None,8 Nov 2022,16 Dec 2022,"confluence-users,jira-software-users"
-6273a5c5e01c14006a52bdc7,SEO INSPIRE,seo@agence-inspire.com,Active,13 Jun 2022,None,16 Sep 2022,Never accessed,jira-software-users
-637cae93a593cb822e93f1a9,Lemjid Mohamed,lemjid@agence-inspire.com,Active,22 Nov 2022,None,6 Jan 2023,Never accessed,"InsireProdTeam,confluence-users,jira-software-users"
-611103b6ae72b2006fa5c1f9,Mohamed nasri,mohamed.nasri@agence-inspire.com,Active,9 Aug 2021,None,6 Jan 2023,22 Dec 2022,"confluence-users,jira-software-users"
-62bec015118b20bee2bd3d39,ahmed.maknessi,ahmed.maknessi@agence-inspire.com,Active,1 Jul 2022,None,7 Jan 2023,Never accessed,"InsireProdTeam,jira-software-users"
-624d78acf3824d006a5c6791,Aymen Rezgui,aymen.rezgui@agence-inspire.com,Active,6 Apr 2022,None,4 Jan 2023,9 Jun 2022,"InsireProdTeam,confluence-users,jira-software-users"
-6246be235f63fd0069b3554c,ahmed.bouzaienne,ahmed.bouzaienne@agence-inspire.com,Active,1 Apr 2022,None,7 Jan 2023,29 Jul 2022,"InsireProdTeam,confluence-users,jira-software-users"
-5e3404aabd1e480ca328ac0f,Wiem LAHBIB,wiem.lahbib@agence-inspire.com,Active,31 Jan 2020,None,6 Jan 2023,6 Oct 2022,"confluence-users,jira-software-users"
-63b298a4030d706ab0e4e437,Syrine Joulak,syrine.joulak@agence-inspire.com,Active,2 Jan 2023,None,6 Jan 2023,Never accessed,jira-software-users
-6123815a24912a0069d20c86,Nour Borchani,nour.borchani@agence-inspire.com,Active,23 Aug 2021,None,5 Jan 2023,13 Sep 2022,"confluence-users,jira-software-users"
-6253e80b13c2c8006a34d5ad,Marouane Dhambri,marouane.dhambri@agence-inspire.com,Active,11 Apr 2022,None,6 Jan 2023,Never accessed,"InsireProdTeam,confluence-users,jira-software-users"
-5e15d3afe3b48c0daa0f615c,Hamdi Arbi,hamdi.arbi@agence-inspire.com,Active,8 Jan 2020,None,30 Nov 2022,11 Nov 2020,"InsireProdTeam,confluence-users,jira-software-users"
-60b509e248b89500694f6a04,Ayoub Ben Thabet,ayoub.benthabet@agence-inspire.com,Active,31 May 2021,Site Admin,8 Jan 2023,26 Aug 2022,"InsireProdTeam,administrators,confluence-users,jira-administrators,jira-software-users,site-admins"
+1,Rubies Merchant,admin@inspiregroup.io,SuperActive,OG,Er’y’day
+2,Tarek Krichen,t.krichen@agence-inspire.com,Active,13 Jun 2022,28 Nov 2022
+3,Salah Omri,salah.omri@agence-inspire.com,Active,11 Oct 2021,6 Jan 2023
+4,Malak Guetat,malak.guetat@agence-inspire.com,Active,23 May 2022,20 Dec 2022
+5,Abderrahmen Boussoukaya,abderrahmen.boussoukaya@agence-inspire.com,Active,15 Jul 2020,4 Jan 2023
+6,Kadri Yassin,yassine.kadri@agence-inspire.com,Active,22 Nov 2022,6 Jan 2023
+7,Rouh El Islem Glida,rouhelislem.glida@agence-inspire.com,Active,17 Feb 2020,6 Jan 2023
+8,Mehdi Louizi,mehdi.louizi@agence-inspire.com,Active,8 Jan 2020,23 Dec 2022
+9,Esma Ben Said,esma.bensaid@agence-inspire.com,Active,21 Jan 2021,29 Apr 2021
+10,Ahlem Chikha,ahlem.chikha@agence-inspire.com,Active,1 Dec 2022,6 Jan 2023
+11,Akrouti bouthaina,bouthayna.akrouti@agence-inspire.com,Active,19 Jul 2021,6 Jan 2023
+12,Sarah Mezrani,sarrah.mezrani@agence-inspire.com,Active,1 Nov 2021,6 Jan 2023
+13,Rami Bellili,rami.bellili@agence-inspire.com,Active,3 Jan 2022,6 Jan 2023
+14,Afif Krayem,afif.krayem@agence-inspire.com,Active,16 Aug 2021,6 Jan 2023
+15,Hela Louizi,hela.louizi@agence-inspire.com,Active,31 Jan 2020,7 Jan 2023
+16,Mehdi Ben Braiek,mehdi.benbraiek@agence-inspire.com,Active,6 Oct 2021,1 Dec 2022
+17,Khalil Guesmi,khalil.guesmi@agence-inspire.com,Active,24 Jan 2020,6 Jan 2023
+18,Tahar Abbassi,tahar.abbassi@agence-inspire.com,Active,3 Oct 2022,6 Jan 2023
+19,Saif Henchir,saif.henchir@agence-inspire.com,Active,11 Jan 2022,8 Nov 2022
+20,Lemjid Mohamed,lemjid@agence-inspire.com,Active,22 Nov 2022,6 Jan 2023
+21,Mohamed Nasri,mohamed.nasri@agence-inspire.com,Active,9 Aug 2021,6 Jan 2023
+22,Ahmed Maknessi,ahmed.maknessi@agence-inspire.com,Active,1 Jul 2022,7 Jan 2023
+23,Aymen Rezgui,aymen.rezgui@agence-inspire.com,Active,6 Apr 2022,4 Jan 2023
+24,Ahmed Bouzaine,ahmed.bouzaienne@agence-inspire.com,Active,1 Apr 2022,7 Jan 2023
+25,Wiem Lahbib,wiem.lahbib@agence-inspire.com,Active,31 Jan 2020,6 Jan 2023
+26,Syrine Joulak,syrine.joulak@agence-inspire.com,Active,2 Jan 2023,6 Jan 2023
+27,Nour Borchani,nour.borchani@agence-inspire.com,Active,23 Aug 2021,5 Jan 2023
+28,Marouane Dhambri,marouane.dhambri@agence-inspire.com,Active,11 Apr 2022,6 Jan 2023
+29,Hamdi Arbi,hamdi.arbi@agence-inspire.com,Active,8 Jan 2020,30 Nov 2022
+30,Ayoub Ben Thabet,ayoub.benthabet@agence-inspire.com,Active,31 May 2021,8 Jan 2023

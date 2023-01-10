@@ -4,7 +4,7 @@
   <div align="middle" class="card" style="width: 12rem;">
     <div class="card-body">
       <h5 class="card-title">Nombre de Tickets</h5>
-      <p class="card-text"><%= @projectissues.count %></p>
+      <p class="card-text"><%= @project.issues.count %></p>
     </div>
   </div>
   <div align="middle" class="card" style="width: 12rem;">
@@ -41,7 +41,7 @@
       </tr>
     </thead>
     <tbody>
-      <% @projectissues.each do |issue| %>
+      <% @project.issues.each do |issue| %>
         <tr>
           <td>
             <%= link_to issue.jiraid, issue %>
@@ -52,7 +52,7 @@
               <%= '<i class="bi bi-hammer" style="font-size: 1.15rem;""></i>'.html_safe %>
             <% end %>
           </td>
-          <td><%= link_to issue.owner, Owner.find_by(name: issue.owner)%></td>
+          <td><%= link_to issue.owner.name, issue.owner%></td>
           <td><%= issue.departement %></td>
           <td><%= issue.time_forecast %></td>
           <td><%= issue.time_real %></td>
@@ -60,6 +60,4 @@
       <% end %>
     </tbody>
   </table>
-  <div align="right" style="font-size: 80%"><%= page_entries_info @projectissues, entry_name: 'issues' %></div>
-  <span class="d-flex flex-row-reverse"><%= link_to_next_page @projectissues, 'Next' %>&nbsp;&nbsp;<%= link_to_previous_page @projectissues, 'Previous' %></span>
 </div>

@@ -18,8 +18,8 @@ class OwnersController < ApplicationController
   end
 
   def edit
-    @owner = Owner.find(params[:id])
-    if current_user.email == @owner.email
+    define_owner
+    if current_user.email == @owner.user.email
       @owner
     else
       admin_only_access
@@ -36,11 +36,10 @@ class OwnersController < ApplicationController
   end
 
   def show
-    @owners = Owner.all.order(created_at: :desc).page params[:page]
     define_owner
     @total_estimation = 0
     @total_real = 0
-    @issuesowner.each do |owner|
+    @owner.issues.each do |owner|
       @total_estimation += owner.time_forecast
       @total_real += owner.time_real
     end
@@ -57,11 +56,10 @@ class OwnersController < ApplicationController
   private
 
   def owner_params
-    params.require(:owner).permit(:name, :departement, :jiraid, :email, :status, :date_joined_jira, :last_seen_on_jira)
+    params.require(:owner).permit(:name, :departement, :jiraid, :status, :date_joined_jira, :last_seen_on_jira)
   end
 
   def define_owner
     @owner = Owner.find(params[:id])
-    @issuesowner = Issue.where(owner: @owner.name).order(created_at: :desc).page params[:page]
   end
 end

@@ -32,11 +32,11 @@
           </td>
           <td><%= issue.jiraid %></td>
           <% if current_user.admin == true %>
-            <td><%= link_to issue.project, Project.find_by(name: issue.project) %></td>
+            <td><%= link_to issue.project.name, issue.project %></td>
           <% else %>
-            <td><%= issue.project %></td>
+            <td><%= issue.project.name %></td>
           <% end %>
-          <td><%= link_to issue.owner, Owner.find_by(name: issue.owner) %></td>
+          <td><%= link_to issue.owner.name, issue.owner %></td>
           <td><%= issue.departement %></td>
           <td><%= issue.time_forecast %></td>
           <td><%= issue.time_real %></td>
