@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_01_10_192733) do
+ActiveRecord::Schema[7.0].define(version: 2023_01_11_122641) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -32,6 +32,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_10_192733) do
     t.boolean "retour_test"
     t.bigint "project_id"
     t.bigint "owner_id"
+    t.boolean "archive", default: false
     t.index ["owner_id"], name: "index_issues_on_owner_id"
     t.index ["project_id"], name: "index_issues_on_project_id"
   end

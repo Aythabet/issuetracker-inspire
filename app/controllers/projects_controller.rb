@@ -42,9 +42,13 @@ class ProjectsController < ApplicationController
 
   def destroy
     define_owner
-    @project.destroy
-
-    redirect_to projects_path
+    if current_user.admin?
+      @project = Project.find(params[:id])
+      @project.destroy
+    else
+      flash.alert = 'Admin access only'
+    end
+    previous_page
   end
 
 
