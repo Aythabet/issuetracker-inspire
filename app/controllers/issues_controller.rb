@@ -2,7 +2,7 @@ class IssuesController < ApplicationController
   require 'net/http'
   require 'uri'
 
-  before_action :define_issue , only: [:show]
+  before_action :define_issue , only: [:show, :edit, :update, :destroy]
 
   def index
     @issues = Issue.all.order(created_at: :desc).page params[:page]
@@ -18,12 +18,10 @@ class IssuesController < ApplicationController
   end
 
   def new
-    admin_only_access
     @issue = Issue.new
   end
 
   def create
-    admin_only_access
     @issue = Issue.new(issue_params)
     if @issue.save
       redirect_to issues_path
@@ -33,8 +31,6 @@ class IssuesController < ApplicationController
   end
 
   def edit
-    admin_only_access
-    @issue = Issue.find(params[:id])
   end
 
   def show
@@ -48,8 +44,6 @@ class IssuesController < ApplicationController
   end
 
   def update
-    admin_only_access
-    @issue = Issue.find(params[:id])
     if @issue.update(issue_params)
       redirect_to issues_path
     else
@@ -59,7 +53,6 @@ class IssuesController < ApplicationController
 
   def destroy
     if current_user.admin?
-      @issue = Issue.find(params[:id])
       @issue.destroy
     else
       flash.alert = 'Admin access only'
@@ -100,6 +93,8 @@ class IssuesController < ApplicationController
 
   def define_issue
     @issue = Issue.find(params[:id])
+    @issue_owner = Owner.find_by(params[:current_user])
+
   end
 
   def no_api_reponse

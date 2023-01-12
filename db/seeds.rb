@@ -4,6 +4,7 @@ require 'securerandom'
 require 'csv'
 require 'net/http'
 require 'uri'
+require 'faker'
 
 Issue.destroy_all
 Project.destroy_all
@@ -124,6 +125,15 @@ projects_array.each do |key, id|
 end
 
 p('~~ Issues seeded!')
+
+10.times do
+  Dailyreport.create(
+    comment: Faker::Fantasy::Tolkien.poem ,
+    owner: Owner.all.sample
+
+  )
+end
+p('~~ You wish you get your #CR generated like this....')
 
 output = "< Database seeded with success! >\n-------\n    \\   ^__^\n     \\  (oo)\\_______\n        (__)\\       )\\/\n            ||----w |\n            ||     ||"
 puts output

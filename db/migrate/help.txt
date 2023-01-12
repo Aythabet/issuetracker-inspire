@@ -9,3 +9,6 @@ class AddProjectToIssues < ActiveRecord::Migration[7.0]
     add_reference :issues, :project, foreign_key: true
   end
 end
+
+
+remove_foreign_key :users, :semesters

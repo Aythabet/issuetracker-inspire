@@ -1,13 +1,14 @@
 Rails.application.routes.draw do
-
   get '/search', to: "issues#search"
   get '/home/index'
   get '/home/jira'
 
   resources :projects
   resources :issues
-  resources :owners
   resources :departements
+  resources :owners
+  resources :dailyreports
+
 
   # Devise routes
   devise_scope :user do
