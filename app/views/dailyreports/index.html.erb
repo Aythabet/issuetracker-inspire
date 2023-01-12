@@ -1,0 +1,34 @@
+<h1>Daily reports: the whole team</h1>
+<br/>
+<br/>
+<div class="table-responsive">
+  <table class="table table-sm table-hover table-justified">
+    <thead>
+      <tr>
+        <th scope="col">#CR ID</th>
+        <th scope="col">Owner</th>
+        <th scope="col">Date & time</th>
+        <th scope="col">Comment</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @dailyreports.each do |dailyreport| %>
+        <tr>
+          <td><%= link_to dailyreport.id, dailyreport %></td>
+          <td><%= dailyreport.owner.name %></td>
+          <td><%= dailyreport.created_at.strftime("%d %B %Y - %kh%M") %></td>
+          <td><%= dailyreport.comment %></td>
+          <td align="middle">
+            <%= link_to '<i class="bi bi-pencil-square"></i>'.html_safe, edit_dailyreport_path(dailyreport) %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+<br/>
+<br/>
+<%= link_to new_dailyreport_path do %>
+  <button type="button" class="btn btn-success btn-lg btn-block">Add a new dailyreport</button>
+<% end %>

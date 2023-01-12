@@ -10,16 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_01_11_122641) do
+ActiveRecord::Schema[7.0].define(version: 2023_01_12_155436) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "dailyreports", force: :cascade do |t|
+    t.text "comment"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "owner_id"
+    t.index ["owner_id"], name: "index_dailyreports_on_owner_id"
+  end
 
   create_table "departements", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "owner_id"
-    t.index ["owner_id"], name: "index_departements_on_owner_id"
   end
 
   create_table "issues", force: :cascade do |t|
@@ -33,6 +39,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_11_122641) do
     t.bigint "project_id"
     t.bigint "owner_id"
     t.boolean "archive", default: false
+    t.bigint "dailyreports_id"
+    t.index ["dailyreports_id"], name: "index_issues_on_dailyreports_id"
     t.index ["owner_id"], name: "index_issues_on_owner_id"
     t.index ["project_id"], name: "index_issues_on_project_id"
   end
@@ -47,8 +55,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_11_122641) do
     t.string "last_seen_on_jira"
     t.string "departement"
     t.bigint "user_id"
-    t.bigint "departement_id"
-    t.index ["departement_id"], name: "index_owners_on_departement_id"
     t.index ["user_id"], name: "index_owners_on_user_id"
   end
 

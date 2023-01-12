@@ -1,0 +1,5 @@
+<%= simple_form_for @dailyreport do |f| %>
+  <%= f.input :comment %>
+  <%= f.association :owner, selected: current_user.id  %>
+  <%= f.button :submit %>
+<% end %>

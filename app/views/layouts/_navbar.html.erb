@@ -21,22 +21,32 @@
               <%= link_to 'Team members', owners_path, class:"dropdown-item"%>
             </div>
           </li>
-          <li class="nav-item">
-            <%= link_to "My profile", current_user.owner, class:"nav-link"%>
-          </li>
-          <li class="nav-item">
-            <%= link_to "Log out", destroy_user_session_path, :method => :delete, class:"nav-link" %>
-          </li>
-        </ul>
-      </div>
-      <%= form_tag(search_path, :method => "get") do %>
-        <div class="input-group">
-          <%= search_field_tag :search, params[:search], placeholder: "EG-1, LGK-123, AC-83", class: "form-control" %>
-          <div class="input-group-btn">
-            <%= button_tag "Search", :class => 'btn btn-success glyphicon glyphicon-search', :jiraid => nil %>
-          </div>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Daily Reports
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <% if current_user.admin? %>
+                <%= link_to 'All Daily reports', dailyreports_path, class:"dropdown-item"%>
+              <% end %>
+              <%= link_to 'My Daily Reports', dailyreports_path, class:"dropdown-item"%>
+            </li>
+            <li class="nav-item">
+              <%= link_to "My profile", current_user.owner, class:"nav-link"%>
+            </li>
+            <li class="nav-item">
+              <%= link_to "Log out", destroy_user_session_path, :method => :delete, class:"nav-link" %>
+            </li>
+          </ul>
         </div>
-      <% end %>
-    </div>
-  <% end %>
-</nav>
+        <%= form_tag(search_path, :method => "get") do %>
+          <div class="input-group">
+            <%= search_field_tag :search, params[:search], placeholder: "EG-1, LGK-123, AC-83", class: "form-control" %>
+            <div class="input-group-btn">
+              <%= button_tag "Search", :class => 'btn btn-success glyphicon glyphicon-search', :jiraid => nil %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+  </nav>

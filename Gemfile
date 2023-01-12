@@ -87,3 +87,4 @@ gem 'rubocop', '~> 1.42', require: false
 gem 'htmlbeautifier'
 gem 'dotenv-rails', groups: [:development, :test]
 gem 'csv', '~> 3.0'
+gem 'faker'
