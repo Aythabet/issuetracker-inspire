@@ -1,6 +1,8 @@
 class Issue < ApplicationRecord
   belongs_to :project
   belongs_to :owner
+  has_many :dailyreport_issues
+  has_many :dailyreports, through: :dailyreport_issues
   max_paginates_per 10
 
   before_create { |issue| issue.jiraid = issue.jiraid.upcase }

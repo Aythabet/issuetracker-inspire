@@ -7,17 +7,11 @@ class DailyreportsController < ApplicationController
 
   def new
     @dailyreport = Dailyreport.new
+    @dailyreport.issues.build
+    @issues = Issue.all.order(created_at: :desc)
+
   end
 
-  def create
-    @dailyreport = Dailyreport.new(dailyreport_params)
-    if @dailyreport.save
-      redirect_to dailyreports_path
-    else
-      flash.alert = 'Action not performed, there was a problem.'
-      render :new, status: :unprocessable_entity
-    end
-  end
 
   def edit
   end
@@ -25,11 +19,22 @@ class DailyreportsController < ApplicationController
   def show
   end
 
+  def create
+    @dailyreport = Dailyreport.new(dailyreport_params)
+    if @dailyreport.save
+      @dailyreport.issue_ids = params[:dailyreport][:issue_ids]
+      redirect_to @dailyreport, notice: 'Dailyreport was successfully created.'
+    else
+      render :new
+    end
+  end
+
   def update
     if @dailyreport.update(dailyreport_params)
-      redirect_to dailyreports_path
+      @dailyreport.issue_ids = params[:dailyreport][:issue_ids]
+      redirect_to @dailyreport, notice: 'Dailyreport was successfully updated.'
     else
-      render :edit, status: :unprocessable_entity
+      render :edit
     end
   end
 
@@ -45,7 +50,20 @@ class DailyreportsController < ApplicationController
   private
 
   def dailyreport_params
-    params.require(:dailyreport).permit(:comment, :owner_id)
+    params.require(:dailyreport).permit(
+      :comment,
+      :owner_id,
+      issue_ids: [
+        :jiraid,
+        :project_id,
+        :owner_id,
+        :time_forecast,
+        :time_real,
+        :departement,
+        :retour_test,
+        :archive
+      ]
+    )
   end
 
   def define_dailyreport

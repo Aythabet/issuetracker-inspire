@@ -1,0 +1,17 @@
+<div id="issues_fields">
+  <div class="nested-fields">
+    <%= f.association :project, label_method: :jiraid, value_method: :id  %>
+    <%= f.input :jiraid, label: 'Enter the JIRA ID'%>
+    <br/>
+    <div class="custom-control custom-switch">
+      <%= f.check_box :retour_test, class: "custom-control-input", id: "customSwitch1"   %>
+      <label class="custom-control-label" for="customSwitch1"> <i class="bi bi-bug" style="font-size: 1.15rem;"></i> Retour tests </label>
+    </div>
+    <br/>
+    <%= f.association :owner, selected: current_user.id %>
+    <%= f.input :departement, label: 'Select a departement', collection: Departement.all, label_method: :name, value_method: :name %>
+    <%= f.input :time_forecast, label: 'Input the time estimation'%>
+    <%= f.input :time_real, label: 'Input the real time spent on the issue'%>
+    <%= link_to "Remove", "#", class: "remove_fields" %>
+  </div>
+</div>

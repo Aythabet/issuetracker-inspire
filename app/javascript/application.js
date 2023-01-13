@@ -2,14 +2,15 @@
 //= require jquery
 //= require jquery_ujs
 //= require bootstrap
+//= require assets/dailyreport_form
+
 
 $(document).ready(function() {
     $(".dropdown-toggle").dropdown();
 });
 
 
-
-//Alert box when deleting stuff
+// Alert box when deleting stuff
 $(document).ready(function() {
 $(".delete-button").click(function(event) {
   event.preventDefault();
@@ -19,3 +20,5 @@ $(".delete-button").click(function(event) {
   }
 });
 });
+
+

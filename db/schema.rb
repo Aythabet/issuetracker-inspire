@@ -10,9 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_01_12_155436) do
+ActiveRecord::Schema[7.0].define(version: 2023_01_13_113148) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "dailyreport_issues", force: :cascade do |t|
+    t.bigint "dailyreport_id", null: false
+    t.bigint "issue_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["dailyreport_id"], name: "index_dailyreport_issues_on_dailyreport_id"
+    t.index ["issue_id"], name: "index_dailyreport_issues_on_issue_id"
+  end
 
   create_table "dailyreports", force: :cascade do |t|
     t.text "comment"
@@ -79,6 +88,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_12_155436) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "dailyreport_issues", "dailyreports"
+  add_foreign_key "dailyreport_issues", "issues"
   add_foreign_key "issues", "owners"
   add_foreign_key "issues", "projects"
   add_foreign_key "owners", "users"

@@ -1,5 +1,5 @@
 <%= simple_form_for @issue do |f| %>
-  <%= f.association :project %>
+  <%= f.association :project, label_method: :jiraid, value_method: :id  %>
   <%= f.input :jiraid, label: 'Enter the JIRA ID'%>
   <br/>
   <div class="custom-control custom-switch">
