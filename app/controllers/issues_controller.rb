@@ -70,7 +70,8 @@ class IssuesController < ApplicationController
       :time_forecast,
       :time_real,
       :departement,
-      :retour_test
+      :retour_test,
+      :archive
     )
   end
 

@@ -4,9 +4,15 @@
     <h5 class="card-title"><%= @dailyreport.owner.name %></h5>
     <hr/>
     <h6 class="card-subtitle mb-2 text-muted">Infos Tickets</h6>
-    <p class="card-text">VAL-201: 2h.30min : Réalisé</p>
-    <p class="card-text">VAL-201: 2h.30min : Réalisé</p>
-    <p class="card-text">VAL-201: 2h.30min : Réalisé</p>
+    <p class="card-text">
+      <% if @dailyreport.issues == [] %>
+        <p> No Tickets in this CR </p>
+      <% else %>
+        <% @dailyreport.issues.each do |issue| %>
+          <%= issue.jiraid %>
+        <% end %>
+      <% end %>
+    </p>
     <hr/>
     <h6 class="card-subtitle mb-2 text-muted">Autres tâches</h6>
     <p class="card-text">Formation: 2h.30min</p>
