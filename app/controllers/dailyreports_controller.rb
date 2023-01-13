@@ -45,7 +45,7 @@ class DailyreportsController < ApplicationController
   private
 
   def dailyreport_params
-    params.require(:dailyreport).permit(:comment, :owner_id, :issue_id)
+    params.require(:dailyreport).permit(:comment, :owner_id)
   end
 
   def define_dailyreport
