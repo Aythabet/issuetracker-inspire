@@ -29,7 +29,7 @@
               <% if current_user.admin? %>
                 <%= link_to 'All Daily reports', dailyreports_path, class:"dropdown-item"%>
               <% end %>
-              <%= link_to 'My Daily Reports', dailyreports_path, class:"dropdown-item"%>
+              <%= link_to 'All Daily reports', dailyreports_path, class:"dropdown-item"%>
             </li>
             <li class="nav-item">
               <%= link_to "My profile", current_user.owner, class:"nav-link"%>
