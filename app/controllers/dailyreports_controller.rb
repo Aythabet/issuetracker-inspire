@@ -22,7 +22,6 @@ class DailyreportsController < ApplicationController
   def create
     @dailyreport = Dailyreport.new(dailyreport_params)
     if @dailyreport.save
-      @dailyreport.issue_ids = params[:dailyreport][:issue_ids]
       redirect_to @dailyreport, notice: 'Dailyreport was successfully created.'
     else
       render :new
@@ -31,7 +30,6 @@ class DailyreportsController < ApplicationController
 
   def update
     if @dailyreport.update(dailyreport_params)
-      @dailyreport.issue_ids = params[:dailyreport][:issue_ids]
       redirect_to @dailyreport, notice: 'Dailyreport was successfully updated.'
     else
       render :edit
@@ -53,7 +51,7 @@ class DailyreportsController < ApplicationController
     params.require(:dailyreport).permit(
       :comment,
       :owner_id,
-      issue_ids: [
+      issues_attributes: [
         :jiraid,
         :project_id,
         :owner_id,
