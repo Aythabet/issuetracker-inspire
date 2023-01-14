@@ -1,30 +1,32 @@
 <div id="issues_fields">
   <div class="form-row">
-    <div class="form-group col-sm-3">
-      <%= f.association :project, label_method: :jiraid, value_method: :id, class: "form-control form-control-sm" %>
+    <div class="form-group col-sm-2">
+      <%= f.input :jiraid, placeholder: "EXP-100", label: 'JIRA ID', class: "form-control form-control-sm" %>
     </div>
-    <div class="form-group col-sm-3">
+    <div class="form-group col-sm-2">
+      <%= f.association :project, placeholder: "Project X", label_method: :jiraid, value_method: :id, class: "form-control form-control-sm" %>
+    </div>
+    <div class="form-group col-sm-2">
       <%= f.association :owner, selected: f.object.owner, label: 'Owner', class: "form-control form-control-sm", disabled: true %>
-    </div>
-    <div class="form-group col-sm-3">
-      <%= f.input :jiraid, label: 'JIRA ID', class: "form-control form-control-sm" %>
     </div>
     <div class="form-group col-sm-3">
       <%= f.input :departement, collection: Departement.all, label: 'Dept.', class: "form-control form-control-sm" %>
     </div>
+    <div class="form-group col-sm-1">
+      <%= f.input :time_forecast, label: 'Estimated',placeholder: '60min', class: "form-control form-control-sm" %>
+    </div>
+    <div class="form-group col-sm-1">
+      <%= f.input :time_real, label: 'Real', placeholder: '80min', class: "form-control form-control-sm" %>
+    </div>
+    <div class="form-group remove-issue-container">
+    </div>
   </div>
-  <div class="form-row">
-    <div class="form-group col-sm-3">
-      <%= f.input :time_forecast, label: 'Est.', class: "form-control form-control-sm" %>
-    </div>
-    <div class="form-group col-sm-3">
-      <%= f.input :time_real, label: 'Real', class: "form-control form-control-sm" %>
-    </div>
+  <div class="custom-control custom-switch">
+    <%= f.check_box :retour_test, class: "custom-control-input", id: "customSwitch1" %>
+    <label class="custom-control-label" for="customSwitch1"> <i class="bi bi-bug" style="font-size: 1.15rem;"></i> Retour Test </label>
   </div>
-  <div class="form-group">
-    <div class="custom-control custom-switch">
-      <%= f.check_box :retour_test, class: "custom-control-input", id: "customSwitch1" %>
-      <label class="custom-control-label" for="customSwitch1"> <i class="bi bi-bug" style="font-size: 1.15rem;"></i> Retour Test </label>
-    </div>
+  <div class="form-group" , align="right" >
+    <%= link_to "+", "#", class: "btn btn-success btn-sm add-issue"%>
+    <%= link_to "-", "#", class:"btn btn-danger btn-sm remove-issue" %>
   </div>
 </div>
