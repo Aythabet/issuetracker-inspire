@@ -1,9 +1,10 @@
 <%= simple_form_for @dailyreport do |f| %>
   <%= f.association :owner, selected: current_user.id  %>
   <%= f.input :comment %>
-  <div style="overflow: scroll; max-height: 200px; max-width: 400px;">
-    <%= f.association :issues, as: :check_boxes, label_method: :jiraid %>
-  </div>
+  <%= f.fields_for :issues do |issue_fields| %>
+    <h3>Issue</h3>
+    <%= render "issues_fields", f: issue_fields %>
+  <% end %>
   <br/>
   <%= f.button :submit %>
 <% end %>
