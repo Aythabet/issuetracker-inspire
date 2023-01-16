@@ -59,7 +59,8 @@ class DailyreportsController < ApplicationController
         :time_real,
         :departement,
         :retour_test,
-        :archive
+        :status,
+        :time_spent
       ]
     )
   end

@@ -1,6 +1,6 @@
 <%= simple_form_for @dailyreport do |f| %>
   <h4><%= DateTime.now.strftime("%d/%m/%Y %H:%M")%></h4>
-  <%= f.association :owner, selected: current_user.id  %>
+  <%= f.association :owner, selected: current_user.id, disabled: true  %>
   <%= f.fields_for :issues do |issue_fields| %>
     <div class="issues-fields-container">
       <h3>Issues' tasks:</h3>

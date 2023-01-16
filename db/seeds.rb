@@ -119,7 +119,9 @@ projects_array.each do |key, id|
       owner: Owner.all.sample,
       departement: Departement.all.sample.name,
       time_real: rand(1..20),
-      time_forecast: rand(1..20)
+      time_forecast: rand(1..20),
+      status: ['In Progress', 'On Hold', 'Done', 'Archived'].sample,
+      time_spent: "#{SecureRandom.random_number(480)} minutes"
     )
   end
 end
