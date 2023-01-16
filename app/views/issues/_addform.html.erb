@@ -8,7 +8,7 @@
         <%= f.input :jiraid, label: 'JIRA ID' %>
       </div>
       <div class="col-sm-4">
-        <%= f.association :owner, label: 'Assignee', selected: current_user.id, as: :select , disabled: true%>
+        <%= f.association :owner, label: 'Assignee', selected: current_user.id, as: :select %>
       </div>
     </div>
     <br>
