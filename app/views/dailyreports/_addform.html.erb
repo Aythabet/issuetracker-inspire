@@ -7,8 +7,8 @@
       <%= render 'issue_fields', :f => issue %>
     <% end %>
     <br/>
-    <div class='links'>
-      <%= link_to_add_association '<i class="bi bi-plus-square-fill"></i>'.html_safe, f, :issues %>
+    <div class='links'  align="right">
+      <%= link_to_add_association 'Add a task <i class="bi bi-plus-square-fill"></i>'.html_safe, f, :issues %>
     </div>
     <h3>Other issues:</h3>
     <%= f.input :comment %>

@@ -28,7 +28,7 @@
     <%= f.check_box :retour_test, class: "custom-control-input", id: "customSwitch1" %>
     <label class="custom-control-label" for="customSwitch1"> <i class="bi bi-bug" style="font-size: 1.15rem;"></i> Retour Test </label>
   </div>
-  <div class="links">
-    <%= link_to_remove_association '<i class="bi bi-dash-square"></i>'.html_safe, f %>
+  <div align="right">
+    <%= link_to_remove_association 'Remove this task <i class="bi bi-dash-square"></i>'.html_safe, f %>
   </div>
 </div>
