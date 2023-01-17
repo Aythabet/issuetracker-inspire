@@ -1,4 +1,4 @@
-<div class="issues_fields">
+<div class='nested-fields'>
   <div class="form-row">
     <div class="form-group col-sm-2">
       <%= f.input :jiraid, placeholder: "EXP-100", label: 'JIRA ID', class: "form-control form-control-sm" %>
@@ -12,35 +12,23 @@
     <div class="form-group col-sm-3">
       <%= f.input :departement, collection: Departement.all, label: 'Dept.', class: "form-control form-control-sm" %>
     </div>
+    <div class="col-sm-3">
+      <%= f.input :status, as: :select, collection: ['In Progress', 'On Hold', 'Done', 'Archived'] %>
+    </div>
+  </div>
+  <div class="form-row">
     <div class="form-group col-sm-1">
       <%= f.input :time_forecast, label: 'Estimated',placeholder: '60min', class: "form-control form-control-sm" %>
     </div>
     <div class="form-group col-sm-1">
       <%= f.input :time_real, label: 'Real', placeholder: '80min', class: "form-control form-control-sm" %>
     </div>
-    <div class="custom-control custom-switch">
-      <%= f.check_box :retour_test, class: "custom-control-input", id: "customSwitch1" %>
-      <label class="custom-control-label" for="customSwitch1"> <i class="bi bi-bug" style="font-size: 1.15rem;"></i> Retour Test </label>
-    </div>
   </div>
-  <div class="form-group controls-issue-container" , align="right" >
-    <%= link_to "-", "#", class:"btn btn-danger btn-sm-2 remove-issue" %>
-    <div class="form-group" , align="right" >
-      <%= link_to "+", "#", class: "btn btn-success btn-sm-2 add-issue"%>
-    </div>
+  <div class="custom-control custom-switch">
+    <%= f.check_box :retour_test, class: "custom-control-input", id: "customSwitch1" %>
+    <label class="custom-control-label" for="customSwitch1"> <i class="bi bi-bug" style="font-size: 1.15rem;"></i> Retour Test </label>
+  </div>
+  <div align="right">
+    <%= link_to_remove_association 'Remove this task <i class="bi bi-dash-square"></i>'.html_safe, f %>
   </div>
 </div>
-<script>
-  var id = 0;
-    $(document).on('click', '.add-issue', function() {
-      id++;
-      var issueFields = $('.issues_fields:first').clone();
-      issueFields.find('input').val('');
-      issueFields.attr("data-id", id);
-      issueFields.insertAfter('.issues_fields:last');
-    });
-
-    $(document).on('click', '.remove-issue', function() {
-      $(this).closest('.issues_fields').remove();
-    });
-</script>

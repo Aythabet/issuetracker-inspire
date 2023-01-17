@@ -88,3 +88,4 @@ gem 'htmlbeautifier'
 gem 'dotenv-rails', groups: [:development, :test]
 gem 'csv', '~> 3.0'
 gem 'faker'
+gem "cocoon"
