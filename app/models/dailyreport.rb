@@ -1,4 +1,5 @@
 class Dailyreport < ApplicationRecord
+  max_paginates_per 10
   belongs_to :owner
   has_many :dailyreport_issues
   has_many :issues, through: :dailyreport_issues

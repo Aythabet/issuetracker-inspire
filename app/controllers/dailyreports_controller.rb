@@ -9,9 +9,7 @@ class DailyreportsController < ApplicationController
     @dailyreport = Dailyreport.new
     @dailyreport.issues.build
     @issues = Issue.all.order(created_at: :desc)
-
   end
-
 
   def edit
   end

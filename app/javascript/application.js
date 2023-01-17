@@ -2,9 +2,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require bootstrap
-//= require assets/dailyreport_form
 //= require cocoon
-
 
 $(document).ready(function() {
     $(".dropdown-toggle").dropdown();
