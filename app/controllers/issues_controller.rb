@@ -71,8 +71,7 @@ class IssuesController < ApplicationController
       :time_real,
       :departement,
       :retour_test,
-      :status,
-      :time_spent
+      :status
     )
   end
 
