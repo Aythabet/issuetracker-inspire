@@ -1,15 +1,44 @@
-<%= simple_form_for @issue do |f| %>
-  <%= f.association :project, label_method: :jiraid, value_method: :id  %>
-  <%= f.input :jiraid, label: 'Enter the JIRA ID'%>
-  <br/>
-  <div class="custom-control custom-switch">
-    <%= f.check_box :retour_test, class: "custom-control-input", id: "customSwitch1"   %>
-    <label class="custom-control-label" for="customSwitch1"> <i class="bi bi-bug" style="font-size: 1.15rem;""></i> Retour tests </label>
-  </div>
-  <br/>
-  <%= f.association :owner, selected: current_user.id %>
-  <%= f.input :departement, label: 'Select a departement', collection: Departement.all, label_method: :name, value_method: :name %>
-  <%= f.input :time_forecast, label: 'Input the time estimation'%>
-  <%= f.input :time_real, label: 'Input the real time spent on the issue'%>
-  <%= f.button :submit %>
-<% end %>
+<div class="container">
+  <%= simple_form_for @issue do |f| %>
+    <div class="row">
+      <div class="col-sm-4">
+        <%= f.association :project, label_method: :jiraid, value_method: :id, as: :select, label: 'Project Name' %>
+      </div>
+      <div class="col-sm-4">
+        <%= f.input :jiraid, label: 'JIRA ID' %>
+      </div>
+      <div class="col-sm-4">
+        <%= f.association :owner, label: 'Assignee', selected: current_user.id, as: :select %>
+      </div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col-sm-3">
+        <%= f.input :departement, label: 'Department', collection: Departement.all, label_method: :name, value_method: :name, as: :select %>
+      </div>
+      <div class="col-sm-3">
+        <%= f.input :status, as: :select, collection: ['In Progress', 'On Hold', 'Done', 'Archived'] %>
+      </div>
+      <div class="col-sm-2 d-flex align-items-center">
+        <div class="custom-control custom-switch">
+          <%= f.check_box :retour_test, class: "custom-control-input", id: "customSwitch1" %>
+          <label class="custom-control-label" for="customSwitch1"> <i class="bi bi-bug" style="font-size: 1.15rem;"></i> Retour tests </label>
+        </div>
+      </div>
+    </div>
+    <br/>
+    <br/>
+    <div class="row">
+      <div class="col-sm-3">
+        <%= f.input :time_forecast, label: 'Time Estimation' %>
+      </div>
+      <div class="col-sm-3">
+        <%= f.input :time_real, label: 'Real Time Spent' %>
+      </div>
+    </div>
+    <br>
+    <div class="form-group">
+      <%= f.button :submit, class: "btn btn-primary" %>
+    </div>
+  <% end %>
+</div>

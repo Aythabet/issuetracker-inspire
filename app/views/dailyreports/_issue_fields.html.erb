@@ -1,4 +1,4 @@
-<div id="issues_fields">
+<div class='nested-fields'>
   <div class="form-row">
     <div class="form-group col-sm-2">
       <%= f.input :jiraid, placeholder: "EXP-100", label: 'JIRA ID', class: "form-control form-control-sm" %>
@@ -7,26 +7,28 @@
       <%= f.association :project, placeholder: "Project X", label_method: :jiraid, value_method: :id, class: "form-control form-control-sm" %>
     </div>
     <div class="form-group col-sm-2">
-      <%= f.association :owner, selected: f.object.owner, label: 'Owner', class: "form-control form-control-sm", disabled: true %>
+      <%= f.association :owner, selected: f.object.owner, label: 'Owner', class: "form-control form-control-sm"%>
     </div>
     <div class="form-group col-sm-3">
       <%= f.input :departement, collection: Departement.all, label: 'Dept.', class: "form-control form-control-sm" %>
     </div>
+    <div class="col-sm-3">
+      <%= f.input :status, as: :select, collection: ['In Progress', 'On Hold', 'Done', 'Archived'] %>
+    </div>
+  </div>
+  <div class="form-row">
     <div class="form-group col-sm-1">
       <%= f.input :time_forecast, label: 'Estimated',placeholder: '60min', class: "form-control form-control-sm" %>
     </div>
     <div class="form-group col-sm-1">
       <%= f.input :time_real, label: 'Real', placeholder: '80min', class: "form-control form-control-sm" %>
     </div>
-    <div class="form-group remove-issue-container">
-    </div>
   </div>
   <div class="custom-control custom-switch">
     <%= f.check_box :retour_test, class: "custom-control-input", id: "customSwitch1" %>
     <label class="custom-control-label" for="customSwitch1"> <i class="bi bi-bug" style="font-size: 1.15rem;"></i> Retour Test </label>
   </div>
-  <div class="form-group" , align="right" >
-    <%= link_to "+", "#", class: "btn btn-success btn-sm add-issue"%>
-    <%= link_to "-", "#", class:"btn btn-danger btn-sm remove-issue" %>
+  <div align="right">
+    <%= link_to_remove_association 'Remove this task <i class="bi bi-dash-square"></i>'.html_safe, f %>
   </div>
 </div>
