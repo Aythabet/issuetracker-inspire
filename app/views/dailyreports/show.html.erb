@@ -3,13 +3,18 @@
   <div class="card-body">
     <h5 class="card-title"><%= @dailyreport.owner.name %></h5>
     <hr/>
-    <h6 class="card-subtitle mb-2 text-muted">Infos Tickets</h6>
+    <h6 class="card-subtitle mb-2 text-muted">Issues:</h6>
     <p class="card-text">
-      <% if @dailyreport.issues == [] %>
-        <p> No Tickets in this CR </p>
-      <% else %>
-        <% @dailyreport.issues.each do |issue| %>
-          <%= issue.jiraid %>
+      <ul>
+        <% if @dailyreport.issues == [] %>
+          <p> No Tickets in this CR </p>
+        <% else %>
+          <% @dailyreport.issues.each do |issue| %>
+            <i class="card-text">  <%= issue.jiraid %> -</i>
+            <i class="card-text"> <%= issue.time_real %> min -</i>
+            <i class="card-text">  <%= issue.status %> </i>
+            <br/>
+          </ul>
         <% end %>
       <% end %>
     </p>
