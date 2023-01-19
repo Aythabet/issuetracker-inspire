@@ -1,0 +1,31 @@
+<h3><%= "#CRs signed by #{current_user.owner.name}" %></h3>
+<hr/>
+<div class="d-flex flex-wrap">
+  <% @owner_dailyreport.each do |cr| %>
+    <div class="card" style="width: 30%; margin:10px">
+      <div class="card-body">
+        <h3 class="card-title">#CR: <%= cr.id %> du <%= cr.created_at.strftime("%d %B %Y - %kh%M") %></h3>
+        <hr/>
+        <% if cr.issues == [] %>
+          <p class="card-text"> No Tickets in this CR </p>
+        <% else %>
+          <% cr.issues.each do |issue| %>
+            <span class="card-text"> <%= status_icon(issue.status) %> </span>
+            &nbsp;
+            <span class="card-text" style="font-weight: bolder;"> <%= issue.jiraid %></span>
+            <span class="card-text">  Time spent: <%= issue.time_real %> min</span>
+            <br>
+          </span>
+        <% end %>
+      <% end %>
+      <hr/>
+      <h5 class="card-subtitle mb-2 text-muted">Autres tâches</h5>
+      <p class="card-text">Formation: 2h.30min</p>
+      <p class="card-text">Réunion: 2h.30min : ValJob</p>
+      <p class="card-text">Réunion: 2h.30min : ValJob</p>
+      <hr/>
+      <p class="card-text">Commentaires: <%= cr.comment %> </p>
+    </div>
+  </div>
+<% end %>
+</div>

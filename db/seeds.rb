@@ -114,25 +114,24 @@ p('°° Projects table generated...')
 projects_array.each do |key, id|
   10.times do
     Issue.create(
-      jiraid: "#{key}-#{SecureRandom.random_number(999)}",
+      jiraid: "#{key}-#{SecureRandom.random_number(150)}",
       project: Project.find_by(id:),
       owner: Owner.all.sample,
       departement: Departement.all.sample.name,
       time_real: rand(1..20),
       time_forecast: rand(1..20),
-      status: ['In Progress', 'On Hold', 'Done', 'Archived'].sample,
-      time_spent: "#{SecureRandom.random_number(480)} minutes"
+      status: ['In Progress', 'On Hold', 'Done', 'Archived'].sample
     )
   end
 end
 
 p('~~ Issues seeded!')
 
-10.times do
+100.times do
   Dailyreport.create(
     comment: Faker::Fantasy::Tolkien.poem ,
-    owner: Owner.all.sample
-
+    owner: Owner.all.sample,
+    issues: Issue.limit(3).order("RANDOM()")
   )
 end
 p('~~ You wish you get your #CR generated like this....')
