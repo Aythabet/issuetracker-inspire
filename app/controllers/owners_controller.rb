@@ -1,12 +1,12 @@
 class OwnersController < ApplicationController
   before_action :define_owner, only: [:edit, :update, :destroy, :show]
+  before_action :admin_only_access, only: [:new, :create, :destroy]
 
   def index
     @owners = Owner.all.order(created_at: :desc).page params[:page]
   end
 
   def new
-    admin_only_access
     @owner = Owner.new
   end
 
@@ -47,6 +47,7 @@ class OwnersController < ApplicationController
 
   def destroy
     return unless current_user.admin?
+
     @owner.destroy
     redirect_to owners_path
   end

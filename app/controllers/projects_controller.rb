@@ -1,5 +1,7 @@
 class ProjectsController < ApplicationController
   before_action :admin_only_access
+  before_action :admin_only_access, only: [:new, :create, :destroy, :edit, :update]
+
   def index
     @projects = Project.all.order(created_at: :desc).page params[:page]
   end
@@ -26,8 +28,8 @@ class ProjectsController < ApplicationController
     @total_estimation = 0
     @total_real = 0
     @project.issues.each do |issue|
-      @total_estimation = @total_estimation + issue.time_forecast
-      @total_real = @total_real + issue.time_real
+      @total_estimation += issue.time_forecast
+      @total_real += issue.time_real
     end
   end
 
@@ -50,7 +52,6 @@ class ProjectsController < ApplicationController
     end
     previous_page
   end
-
 
   private
 

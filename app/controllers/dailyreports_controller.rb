@@ -40,10 +40,10 @@ class DailyreportsController < ApplicationController
   end
 
   def destroy
-    if current_user.admin?
+    if current_user.admin? || current_user.email == @dailyreport.owner.email
       @dailyreport.destroy
     else
-      flash.alert = 'Admin access only'
+      admin_only_access
     end
     previous_page
   end

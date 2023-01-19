@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   get '/search', to: 'issues#search'
-  get '/home/jira'
+  get '/home/jira', to: 'home#jira'
   get '/dailyreports/owner_dailyreport/:id', to: 'dailyreports#owner_dailyreport', :as => 'my_crs'
 
   resources :projects

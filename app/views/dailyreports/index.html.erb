@@ -1,5 +1,8 @@
-<h3>Daily reports</h3>
+<h3>Inspire Production Team CRs</h3>
 <br>
+<%= link_to new_dailyreport_path do %>
+  <button type="button" class="btn btn-success btn-sm btn-block">Submit a CR</button>
+<% end %>
 <br>
 <div class="d-flex flex-wrap">
   <% @dailyreports.each do |dailyreport| %>
@@ -32,10 +35,7 @@
 </div>
 <br>
 <br>
-<%= link_to new_dailyreport_path do %>
-  <button type="button" class="btn btn-success btn-sm btn-block">Add a new dailyreport</button>
-<% end %>
-<div align="right" style="font-size: 80%"><%= page_entries_info @dailyreports, entry_name: 'dailyreport' %></div>
+<div align="right" style="font-size: 80%"><%= page_entries_info @dailyreports, entry_name: 'CRs' %></div>
 <div class="d-flex flex-row-reverse">
   <%= link_to_next_page @dailyreports, 'Next' %>&nbsp;&nbsp;
   <%= link_to_previous_page @dailyreports, 'Previous' %>

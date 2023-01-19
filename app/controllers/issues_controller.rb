@@ -3,6 +3,7 @@ class IssuesController < ApplicationController
   require 'uri'
 
   before_action :define_issue , only: [:show, :edit, :update, :destroy]
+  before_action :admin_only_access, only: [:destroy]
 
   def index
     @issues = Issue.all.order(created_at: :desc).page params[:page]
@@ -55,7 +56,7 @@ class IssuesController < ApplicationController
     if current_user.admin?
       @issue.destroy
     else
-      flash.alert = 'Admin access only'
+      admin_only_access
     end
     previous_page
   end
@@ -91,11 +92,9 @@ class IssuesController < ApplicationController
     @response_output_issues = JSON.parse(response.body)
   end
 
-
   def define_issue
     @issue = Issue.find(params[:id])
     @issue_owner = Owner.find_by(params[:current_user])
-
   end
 
   def no_api_reponse
@@ -110,7 +109,6 @@ class IssuesController < ApplicationController
     @api_issue_creator = 'No data from the API.'
     @api_summary = 'No data from the API.'
   end
-
 
   def yes_api_response
     @api_issuekey = @response_output_issues['key']
