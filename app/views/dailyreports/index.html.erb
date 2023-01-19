@@ -1,34 +1,42 @@
-<h1>Daily reports</h1>
-<br/>
-<br/>
-<div class="table-responsive">
-  <table class="table table-sm table-hover table-justified">
-    <thead>
-      <tr>
-        <th scope="col">#CR ID</th>
-        <th scope="col">Owner</th>
-        <th scope="col">Date & time</th>
-        <th scope="col">Comment</th>
-        <th scope="col"></th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @dailyreports.each do |dailyreport| %>
-        <tr>
-          <td><%= link_to dailyreport.id, dailyreport %></td>
-          <td><%= dailyreport.owner.name %></td>
-          <td><%= dailyreport.created_at.strftime("%d %B %Y - %kh%M") %></td>
-          <td><%= dailyreport.comment %></td>
-          <td align="middle">
-            <%= link_to '<i class="bi bi-pencil-square"></i>'.html_safe, edit_dailyreport_path(dailyreport) %>
-          </td>
-        </tr>
+<h3>Daily reports</h3>
+<br>
+<br>
+<div class="d-flex flex-wrap">
+  <% @dailyreports.each do |dailyreport| %>
+    <div class="card" style="width: 30%; margin:10px">
+      <div class="card-body">
+        <h6 class="card-title d-flex justify-content-between">
+          #CR: <%= dailyreport.id %> du <%= dailyreport.created_at.strftime("%d %B %Y - %kh%M") %>
+          <% if current_user.admin? %>
+            <%= link_to '<i class="bi bi-pencil-square"></i>'.html_safe, edit_dailyreport_path(dailyreport)%>
+          <% end %>
+        </h6>
+        <h6 class="card-subtitle mb-2 text-muted">Owner: <%= dailyreport.owner.name %></h6>
+        <hr/>
+        <% if dailyreport.issues == [] %>
+          <p class="card-text"> No Tickets in this CR </p>
+        <% else %>
+          <% dailyreport.issues.each do |issue| %>
+            <span class="card-text"> <%= status_icon(issue.status) %> </li>
+            &nbsp;
+            <span class="card-text" style="font-weight: bolder;">  <%= issue.jiraid %></span>
+            <span class="card-text">  Time spent: <%= issue.time_real %> min</span>
+          </span>
+          <hr/>
+        <% end %>
       <% end %>
-    </tbody>
-  </table>
-</div>
-<br/>
-<br/>
-<%= link_to new_dailyreport_path do %>
-  <button type="button" class="btn btn-success btn-lg btn-block">Add a new dailyreport</button>
+      <p class="card-text" style="font-weight: light;">Commentaires: <%= dailyreport.comment %> </p>
+    </div>
+  </div>
 <% end %>
+</div>
+<br>
+<br>
+<%= link_to new_dailyreport_path do %>
+  <button type="button" class="btn btn-success btn-sm btn-block">Add a new dailyreport</button>
+<% end %>
+<div align="right" style="font-size: 80%"><%= page_entries_info @dailyreports, entry_name: 'dailyreport' %></div>
+<div class="d-flex flex-row-reverse">
+  <%= link_to_next_page @dailyreports, 'Next' %>&nbsp;&nbsp;
+  <%= link_to_previous_page @dailyreports, 'Previous' %>
+</div>

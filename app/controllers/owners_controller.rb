@@ -1,4 +1,6 @@
 class OwnersController < ApplicationController
+  before_action :define_owner, only: [:edit, :update, :destroy, :show]
+
   def index
     @owners = Owner.all.order(created_at: :desc).page params[:page]
   end
@@ -18,7 +20,6 @@ class OwnersController < ApplicationController
   end
 
   def edit
-    define_owner
     if current_user.email == @owner.user.email
       @owner
     else
@@ -27,7 +28,6 @@ class OwnersController < ApplicationController
   end
 
   def update
-    @owner = Owner.find(params[:id])
     if @owner.update(owner_params)
       redirect_to owners_path
     else
@@ -36,7 +36,7 @@ class OwnersController < ApplicationController
   end
 
   def show
-    define_owner
+    @dailyreports = Dailyreport.where(owner_id: params[:id]).all
     @total_estimation = 0
     @total_real = 0
     @owner.issues.each do |owner|
@@ -47,8 +47,6 @@ class OwnersController < ApplicationController
 
   def destroy
     return unless current_user.admin?
-
-    @owner = Owner.find(params[:id])
     @owner.destroy
     redirect_to owners_path
   end

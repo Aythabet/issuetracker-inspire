@@ -1,5 +1,6 @@
 class DailyreportsController < ApplicationController
-  before_action :define_dailyreport , only: [:edit, :show, :update, :destroy]
+  helper DailyreportsHelper
+  before_action :define_dailyreport, only: [:edit, :show, :update, :destroy]
 
   def index
     @dailyreports = Dailyreport.all.order(created_at: :desc).page params[:page]
@@ -15,6 +16,10 @@ class DailyreportsController < ApplicationController
   end
 
   def show
+  end
+
+  def owner_dailyreport
+    @owner_dailyreport = current_user.owner.dailyreports
   end
 
   def create
