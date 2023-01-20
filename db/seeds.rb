@@ -70,14 +70,14 @@ def collect_projects(output_array)
   while i < output_array['values'].length
     project_key = output_array['values'][i]['key']
     project_name = output_array['values'][i]['name']
-    project_jira_link = output_array['values'][i]['self']
-    @collected_projects << [project_key, project_name, project_jira_link]
+    project_lead = output_array['values'][i]['lead']['displayName']
+    @collected_projects << [project_key, project_name, project_lead]
     i += 1
   end
 end
 
 def get_projects(start)
-  url = URI.parse("https://agenceinspire.atlassian.net/rest/api/3/project/search?startAt=#{start}&maxResults=50")
+  url = URI.parse("https://agenceinspire.atlassian.net/rest/api/3/project/search?startAt=#{start}&maxResults=50&expand=lead")
   headers = {
     'Authorization' =>  "Basic #{ENV['JIRA_API_TOKEN']}",
     'Content-Type' => 'application/json'
@@ -97,7 +97,7 @@ get_projects(0)
 get_projects(50)
 
 @collected_projects.each do |project|
-  Project.create([{'name': project[1], 'jiraid': project[0], 'link': project[2]}])
+  Project.create([{'name': project[1], 'jiraid': project[0], 'lead': project[2]}])
 end
 
 p('°° Projects listed....')

@@ -1,28 +1,26 @@
 <h1>Home >> JIRA</h1>
-<% if @collected_projects.nil? || @collected_projects == [] %>
+<% if @collected_projects_hash.nil? || @collected_projects_hash == {} %>
   <%= "No response or empty body" %>
 <% else %>
-  Number of projects: <%= @collected_projects.length %>
+  Number of projects: <%= @collected_projects_hash.length %>
   <div class="table-responsive">
     <table class="table table-sm table-hover">
       <thead>
         <tr>
-          <th scope="col"></th>
           <th scope="col">Key</th>
           <th scope="col">Name</th>
+          <th scope="col">Lead</th>
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <% @collected_projects.each do |project| %>
-            <td><%= link_to "Self", "#{project[2]}" %></td>
-            <td><%= project[0] %></td>
-            <td><%= project[1] %></td>
-            <td><%= project[2] %></td>
+        <% @collected_projects_hash.each do |key, project| %>
+          <tr>
+            <td><%= project[:key] %></td>
+            <td><%= project[:name] %></td>
+            <td><%= project[:lead] %></td>
           </tr>
         <% end %>
       </tbody>
     </table>
   <% end %>
 </div>
-<%=@response_output_issues%>

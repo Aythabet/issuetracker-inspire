@@ -8,6 +8,7 @@
         <th scope="col"></th>
         <th scope="col">Jira ID</th>
         <th scope="col">Name</th>
+        <th scope="col">Lead</th>
         <th scope="col"></th>
       </tr>
     </thead>
@@ -17,6 +18,7 @@
           <td align="middle"><%= link_to '<i class="bi bi-eye-fill" style="font-size: 1.15rem;""></i>'.html_safe, project %></td>
           <td><%= project.jiraid %></td>
           <td><%= project.name %></td>
+          <td><%= project.lead %></td>
           <% if current_user.admin? %>
             <td align="middle">
               <%= link_to '<i class="bi bi-pencil-square"></i>'.html_safe, edit_project_path(project) %>
