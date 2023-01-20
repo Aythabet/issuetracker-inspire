@@ -36,6 +36,6 @@ class ApplicationController < ActionController::Base
       http.request(request)
     end
 
-    response_output_issues = JSON.parse(response.body)
+    @response_output_issues = JSON.parse(response.body)
   end
 end
