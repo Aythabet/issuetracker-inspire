@@ -16,7 +16,7 @@ class HomeController < ApplicationController
 
   private
 
-  def parse_projects(output_array)
+  def parse_projects(output_array, projects_hash)
     i = 0
     while i < output_array['values'].length
       project_key = output_array['values'][i]['key']
