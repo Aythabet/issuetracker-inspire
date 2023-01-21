@@ -1,30 +1,27 @@
 <h3><%= "#CR: #{@dailyreport.id} du #{@dailyreport.created_at.strftime("%d %B %Y - %kh%M") }" %></h3>
-<div class="card" style="width: 18rem;">
+<div class="card" style="width: 30%;">
   <div class="card-body">
     <h5 class="card-title"><%= @dailyreport.owner.name %></h5>
     <hr/>
     <h6 class="card-subtitle mb-2 text-muted">Issues:</h6>
-    <p class="card-text">
-      <ul>
-        <% if @dailyreport.issues == [] %>
-          <p> No Tickets in this CR </p>
-        <% else %>
-          <% @dailyreport.issues.each do |issue| %>
-            <i class="card-text">  <%= issue.jiraid %> -</i>
-            <i class="card-text"> <%= issue.time_real %> min -</i>
-            <i class="card-text">  <%= issue.status %> </i>
-            <br/>
-          </ul>
-        <% end %>
-      <% end %>
-    </p>
-    <hr/>
-    <h6 class="card-subtitle mb-2 text-muted">Autres tâches</h6>
-    <p class="card-text">Formation: 2h.30min</p>
-    <p class="card-text">Réunion: 2h.30min : ValJob</p>
-    <p class="card-text">Réunion: 2h.30min : ValJob</p>
-    <hr/>
-    <p class="card-text">Commentaires: <%= @dailyreport.comment %> </p>
-    <a href="" class="btn btn-dark">Link</a>
-  </div>
+    <% if @dailyreport.issues == [] %>
+      <p> No Tickets in this CR </p>
+    <% else %>
+      <% @dailyreport.issues.each do |issue| %>
+        <span class="card-text"> <%= status_icon(issue.status) %> </span>
+        &nbsp;
+        <span class="card-text" style="font-weight: bolder;">  <%= issue.jiraid %></span>
+        <span class="card-text">  Time spent: <%= issue.time_real %> min</span>
+      </span>
+    <% end %>
+  <% end %>
+  <hr/>
+  <h6 class="card-subtitle mb-2 text-muted">Autres tâches</h6>
+  <p class="card-text">Formation: 2h.30min</p>
+  <p class="card-text">Réunion: 2h.30min : ValJob</p>
+  <p class="card-text">Réunion: 2h.30min : ValJob</p>
+  <hr/>
+  <p class="card-text">Commentaires: <%= @dailyreport.comment %> </p>
+  <a href="" class="btn btn-dark">Link</a>
+</div>
 </div>
