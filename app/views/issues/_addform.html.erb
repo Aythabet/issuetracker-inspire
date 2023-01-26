@@ -2,9 +2,6 @@
   <%= simple_form_for @issue do |f| %>
     <div class="row">
       <div class="col-sm-4">
-        <%= f.association :project, label_method: :jiraid, value_method: :id, as: :select, label: 'Project Name' %>
-      </div>
-      <div class="col-sm-4">
         <%= f.input :jiraid, label: 'JIRA ID' %>
       </div>
       <div class="col-sm-4">
@@ -15,9 +12,6 @@
     <div class="row">
       <div class="col-sm-3">
         <%= f.input :departement, label: 'Department', collection: Departement.all, label_method: :name, value_method: :name, as: :select %>
-      </div>
-      <div class="col-sm-3">
-        <%= f.input :status, as: :select, collection: ['In Progress', 'On Hold', 'Done', 'Archived'] %>
       </div>
       <div class="col-sm-2 d-flex align-items-center">
         <div class="custom-control custom-switch">
@@ -30,10 +24,10 @@
     <br/>
     <div class="row">
       <div class="col-sm-3">
-        <%= f.input :time_forecast, label: 'Time Estimation' %>
-      </div>
-      <div class="col-sm-3">
-        <%= f.input :time_real, label: 'Real Time Spent' %>
+        <%= f.hidden_field :project_id, value: @api_project_name%>
+        <%= f.hidden_field :status, value: @api_status%>
+        <%= f.hidden_field :time_real, value: @api_time_real%>
+        <%= f.hidden_field :time_forecast, value: @api_time_estimate %>
       </div>
     </div>
     <br>

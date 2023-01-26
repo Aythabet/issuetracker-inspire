@@ -114,7 +114,7 @@ p('°° Projects table generated...')
 projects_array.each do |key, id|
   10.times do
     Issue.create(
-      jiraid: "#{key}-#{SecureRandom.random_number(150)}",
+      jiraid: "#{key}-#{SecureRandom.random_number(50)}",
       project: Project.find_by(id:),
       owner: Owner.all.sample,
       departement: Departement.all.sample.name,
