@@ -1,35 +1,29 @@
-<hr>
-<div class='nested-fields'>
-  <div class="form-row">
-    <div class="form-group col-sm-2">
-      <%= f.input :jiraid, placeholder: "EXP-100", label: 'JIRA ID', class: "form-control form-control-sm" %>
-    </div>
-    <div class="form-group col-sm-2">
-      <%= f.association :project, placeholder: "Project X", label_method: :jiraid, value_method: :id, class: "form-control form-control-sm" %>
-    </div>
-    <div class="form-group col-sm-2">
-      <%= f.association :owner, selected: f.object.owner, label: 'Owner', class: "form-control form-control-sm"%>
-    </div>
-    <div class="form-group col-sm-3">
-      <%= f.input :departement, collection: Departement.all, label: 'Dept.', class: "form-control form-control-sm" %>
-    </div>
-    <div class="col-sm-3">
-      <%= f.input :status, as: :select, collection: ['In Progress', 'On Hold', 'Done', 'Archived'] %>
-    </div>
+  <hr>
+<div class='nested-fields d-flex'>
+  <div class="col-sm-2 mr-3">
+    <%= f.input :jiraid, label: 'JIRA ID' %>
   </div>
-  <div class="form-row">
-    <div class="form-group col-sm-1">
-      <%= f.input :time_forecast, label: 'Estimated',placeholder: '60min', class: "form-control form-control-sm" %>
-    </div>
-    <div class="form-group col-sm-1">
-      <%= f.input :time_real, label: 'Real', placeholder: '80min', class: "form-control form-control-sm" %>
-    </div>
+  <div class="col-sm-4 mr-3">
+    <%= f.association :owner, label: 'Assignee', selected: current_user.id, as: :select %>
+  </div>
+  <div class="col-sm-3 mr-3">
+    <%= f.input :departement, label: 'Department', collection: Departement.all, label_method: :name, value_method: :name, as: :select %>
+  </div>
+  <div class="col-sm-2 d-flex align-items-center">
     <div class="custom-control custom-switch">
       <%= f.check_box :retour_test, class: "custom-control-input", id: "customSwitch1" %>
-      <label class="custom-control-label" for="customSwitch1"> <i class="bi bi-bug" style="font-size: 1.15rem;"></i> Retour Test </label>
+      <label class="custom-control-label" for="customSwitch1"> <i class="bi bi-bug" style="font-size: 1.15rem;"></i> Retour tests </label>
     </div>
   </div>
-  <div align="right">
-    <%= link_to_remove_association 'Remove this task <i class="bi bi-dash-square"></i>'.html_safe, f %>
+  <div class="row">
+    <div class="col-sm-3">
+      <%= f.hidden_field :project_id, value: @api_project_name%>
+      <%= f.hidden_field :status, value: @api_status%>
+      <%= f.hidden_field :time_real, value: @api_time_real%>
+      <%= f.hidden_field :time_forecast, value: @api_time_estimate %>
+    </div>
   </div>
+</div>
+<div align="right" class="ml-auto">
+  <%= link_to_remove_association 'Remove this task <i class="bi bi-dash-square"></i>'.html_safe, f %>
 </div>
