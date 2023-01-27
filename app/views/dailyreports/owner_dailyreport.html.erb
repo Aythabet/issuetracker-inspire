@@ -1,5 +1,9 @@
 <h3><%= "#CRs signed by #{current_user.owner.name}" %></h3>
 <hr/>
+<%= link_to new_dailyreport_path do %>
+  <button type="button" class="btn btn-success btn-sm btn-block">Submit a CR</button>
+<% end %>
+<hr/>
 <div class="d-flex flex-wrap">
   <% @owner_dailyreport.each do |cr| %>
     <div class="card" style="width: 30%; margin:10px">
