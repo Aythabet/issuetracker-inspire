@@ -14,7 +14,7 @@
             <%= link_to '<i class="bi bi-pencil-square"></i>'.html_safe, edit_dailyreport_path(dailyreport)%>
           <% end %>
         </h6>
-        <h6 class="card-subtitle mb-2 text-muted">Owner: <%= dailyreport.owner.name %></h6>
+        <h6 class="card-subtitle mb-2 text-muted">Owner: <%= link_to dailyreport.owner.name, dailyreport.owner %></h6>
         <hr/>
         <% if dailyreport.issues == [] %>
           <p class="card-text"> No Tickets in this CR </p>
@@ -22,8 +22,9 @@
           <% dailyreport.issues.each do |issue| %>
             <span class="card-text"> <%= status_icon(issue.status) %> </span>
             &nbsp;
-            <span class="card-text" style="font-weight: bolder;">  <%= issue.jiraid %></span>
+            <span class="card-text" style="font-weight: bolder;">  <%= link_to issue.jiraid, issue %></span>
             <span class="card-text">  Time spent: <%= issue.time_real %> min</span>
+            <span class="card-text">  Time spent: <%= issue.status %> min</span>
           </span>
           <hr/>
         <% end %>

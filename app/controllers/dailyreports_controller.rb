@@ -24,10 +24,21 @@ class DailyreportsController < ApplicationController
 
   def create
     @dailyreport = Dailyreport.new(dailyreport_params)
-    if @dailyreport.save
-      redirect_to @dailyreport, notice: 'Dailyreport was successfully created.'
-    else
-      render :new
+
+    @dailyreport.issues.each do |cr_issue|
+      call_jira_api("https://agenceinspire.atlassian.net/rest/api/3/issue/#{cr_issue.jiraid}")
+      if @response_output_issues.key?('errors')
+        flash.alert = "Please check if #{cr_issue.jiraid} exists and is available on JIRA"
+        no_api_reponse
+      else
+        issue_details_from_jira(cr_issue)
+        issue_time_real_from_jira(cr_issue)
+      end
+      if @dailyreport.save!
+        redirect_to @dailyreport, notice: 'Dailyreport was successfully created.'
+      else
+        render :new
+      end
     end
   end
 

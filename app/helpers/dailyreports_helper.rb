@@ -3,6 +3,8 @@ module DailyreportsHelper
     case status
     when "Done"
       "<i class='bi bi-check-all'></i>".html_safe
+    when "Réalisé"
+      "<i class='bi bi-check-all'></i>".html_safe
     when "Archived"
       "<i class='bi bi-archive'></i>".html_safe
     when 'In Progress'
