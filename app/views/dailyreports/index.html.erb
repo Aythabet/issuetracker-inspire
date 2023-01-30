@@ -5,6 +5,7 @@
 <% end %>
 <br>
 <div class="d-flex flex-wrap">
+  <!-- Header of the card -->
   <% @dailyreports.each do |dailyreport| %>
     <div class="card" style="width: 30%; margin:10px">
       <div class="card-body">
@@ -16,19 +17,30 @@
         </h6>
         <h6 class="card-subtitle mb-2 text-muted">Owner: <%= link_to dailyreport.owner.name, dailyreport.owner %></h6>
         <hr/>
+        <!-- Main Tasks -->
         <% if dailyreport.issues == [] %>
           <p class="card-text"> No Tickets in this CR </p>
         <% else %>
           <% dailyreport.issues.each do |issue| %>
+            <% if issue.issue_type == "Task" %>
+              <span class="card-text"> <%= status_icon(issue.status) %> </span>
+              &nbsp;
+              <span class="card-text" style="font-weight: bolder;">  <%= link_to issue.jiraid, issue %></span>
+              <span class="card-text">  Time spent: <%= issue.time_real %> min</span>
+              <span class="card-text">  Time spent: <%= issue.status %> min</span><br>
+            <% end %>
+          </span>
+          <!-- Other tasks -->
+          <% if issue.issue_type != "Task" %>
             <span class="card-text"> <%= status_icon(issue.status) %> </span>
             &nbsp;
             <span class="card-text" style="font-weight: bolder;">  <%= link_to issue.jiraid, issue %></span>
             <span class="card-text">  Time spent: <%= issue.time_real %> min</span>
-            <span class="card-text">  Time spent: <%= issue.status %> min</span>
-          </span>
-          <hr/>
+            <span class="card-text">  Time spent: <%= issue.status %> min</span><br>
+          <% end %>
         <% end %>
       <% end %>
+      <hr/>
       <p class="card-text" style="font-weight: light;">Commentaires: <%= dailyreport.comment %> </p>
     </div>
   </div>

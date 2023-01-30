@@ -9,31 +9,25 @@ require 'faker'
 Issue.destroy_all
 Project.destroy_all
 Owner.destroy_all
-Departement.destroy_all
+IssueType.destroy_all
 
 p('Database dropped...')
 
-Departement.create([{
-                      'name': 'Backend'
-                    },
-                    {
-                      'name': 'Frontend'
-                    },
-                    {
-                      'name': 'Project Management'
-                    },
-                    {
-                      'name': 'DevOps'
-                    },
-                    {
-                      'name': 'Design'
-                    },
-                    {
-                      'name': 'Rédaction'
-                    }
-                    ]);
+IssueType.create([{
+                    'name': 'Self-Training'
+                  },
+                  {
+                    'name': 'Training'
+                  },
+                  {
+                    'name': 'Meeting'
+                  },
+                  {
+                    'name': 'Task'
+                  }
+                  ]);
 
-p('Departements seeded...')
+p('Issues Types seeded...')
 
 CSV.foreach('db/jira_users.csv') do |row|
   User.create([
@@ -49,7 +43,6 @@ end
 CSV.foreach('db/jira_users.csv') do |row|
   Owner.create([
                  {
-                   'departement': Departement.all.sample.name,
                    'user_id': row[0],
                    'name': row[1],
                    'status': row[3],
@@ -117,7 +110,7 @@ projects_array.each do |key, id|
       jiraid: "#{key}-#{SecureRandom.random_number(50)}",
       project: Project.find_by(id:),
       owner: Owner.all.sample,
-      departement: Departement.all.sample.name,
+      issue_type: IssueType.all.sample.name,
       time_real: rand(1..20),
       time_forecast: rand(1..20),
       status: ['In Progress', 'On Hold', 'Done', 'Archived'].sample

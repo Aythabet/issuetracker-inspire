@@ -1,0 +1,4 @@
+<%= simple_form_for @issue_type do |f| %>
+  <%= f.input :name, label: 'Enter the type name', error: 'The name is mandatory, please specify one'%>
+  <%= f.button :submit %>
+<% end %>

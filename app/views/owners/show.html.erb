@@ -47,7 +47,7 @@
       <tr>
         <th scope="col">Jira ID</th>
         <th scope="col">Project</th>
-        <th scope="col">Département</th>
+        <th scope="col">Type</th>
         <th scope="col">Estimation</th>
         <th scope="col">Réel</th>
         <th scope="col"></th>
@@ -70,7 +70,7 @@
           <% else %>
             <td><%= issue.project.name %></td>
           <% end %>
-          <td><%= issue.departement %></td>
+          <td><%= issue.issue_type %></td>
           <td><%= issue.time_forecast %></td>
           <td><%= issue.time_real %></td>
           <% if current_user.admin == true %>

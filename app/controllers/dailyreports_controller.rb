@@ -71,7 +71,7 @@ class DailyreportsController < ApplicationController
         :owner_id,
         :time_forecast,
         :time_real,
-        :departement,
+        :issue_type,
         :retour_test,
         :status,
         :_destroy
