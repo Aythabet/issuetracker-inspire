@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_01_21_184538) do
+ActiveRecord::Schema[7.0].define(version: 2023_01_30_063249) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -31,7 +31,13 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_21_184538) do
     t.index ["owner_id"], name: "index_dailyreports_on_owner_id"
   end
 
-  create_table "departements", force: :cascade do |t|
+  create_table "issue_categories", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "name"
+  end
+
+  create_table "issue_types", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -41,7 +47,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_21_184538) do
     t.string "jiraid"
     t.float "time_forecast"
     t.float "time_real"
-    t.string "departement"
+    t.string "issue_type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "retour_test"
@@ -62,7 +68,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_21_184538) do
     t.string "status"
     t.string "date_joined_jira"
     t.string "last_seen_on_jira"
-    t.string "departement"
     t.bigint "user_id"
     t.index ["user_id"], name: "index_owners_on_user_id"
   end

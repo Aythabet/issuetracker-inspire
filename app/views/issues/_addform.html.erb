@@ -11,7 +11,7 @@
     <br>
     <div class="row">
       <div class="col-sm-3">
-        <%= f.input :departement, label: 'Department', collection: Departement.all, label_method: :name, value_method: :name, as: :select %>
+        <%= f.input :issue_type, label: 'Type', collection: IssueType.all, label_method: :name, value_method: :name, as: :select %>
       </div>
       <div class="col-sm-2 d-flex align-items-center">
         <div class="custom-control custom-switch">

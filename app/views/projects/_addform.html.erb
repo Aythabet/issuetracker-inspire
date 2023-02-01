@@ -1,6 +1,5 @@
 <%= simple_form_for @project do |f| %>
   <%= f.input :jiraid, label: 'Enter the JIRA ID', error: 'The JIRA ID is mandatory, please specify one'%>
   <%= f.input :name, label: 'Enter the project name', error: 'The name is mandatory, please specify one'%>
-  <%= f.input :link, label: 'JIRA Management link', error: 'The link is mandatory, please specify one'%>
   <%= f.button :submit %>
 <% end %>

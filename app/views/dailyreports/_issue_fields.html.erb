@@ -1,13 +1,13 @@
   <hr>
 <div class='nested-fields d-flex'>
   <div class="col-sm-2 mr-3">
-    <%= f.input :jiraid, label: 'JIRA ID' %>
+    <%= f.input :jiraid, label: 'JIRA ID', pattern: '/\b[a-zA-Z]{2,6}-[1-9]\d{0,3}\b/', error: 'JIRA ID format is invalid (e.g. ABC-123)' %>
   </div>
   <div class="col-sm-4 mr-3">
     <%= f.association :owner, label: 'Assignee', selected: current_user.id, as: :select %>
   </div>
   <div class="col-sm-3 mr-3">
-    <%= f.input :departement, label: 'Department', collection: Departement.all, label_method: :name, value_method: :name, as: :select %>
+    <%= f.input :issue_type, label: 'Type', collection: IssueType.all, label_method: :name, value_method: :name, as: :select %>
   </div>
   <div class="col-sm-2 d-flex align-items-center">
     <div class="custom-control custom-switch">

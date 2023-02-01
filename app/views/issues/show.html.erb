@@ -7,7 +7,7 @@
         <th scope="col">Ticket ID</th>
         <th scope="col">Projet</th>
         <th scope="col">Ressource</th>
-        <th scope="col">Département</th>
+        <th scope="col">Type</th>
         <th scope="col">Estimation</th>
         <th scope="col">Réel</th>
         <th scope="col"></th>
@@ -23,7 +23,7 @@
         <td><%= @issue.jiraid %></td>
         <td><%= link_to @issue.project.name, @issue.project %></td>
         <td><%= link_to @issue.owner.name, @issue.owner %></td>
-        <td><%= @issue.departement %></td>
+        <td><%= @issue.issue_type %></td>
         <td><%= @issue.time_forecast %></td>
         <td><%= @issue.time_real %></td>
         <% if current_user.admin == true %>
