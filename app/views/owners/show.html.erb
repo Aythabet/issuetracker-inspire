@@ -1,16 +1,4 @@
-<div>
-  <div class="d-flex" style="justify-content: space-between;">
-    <div>
-      <h2><%= @owner.name %><% if current_user.email == @owner.user.email %></h2>
-        <%= link_to 'My Dailyreports', my_crs_path(id: @owner.id), class:"btn btn-dark" %>
-      </div>
-      <div align="right">
-        <%= link_to 'Update my profile details', edit_owner_path(@owner), type:"button", class:"btn btn-light" %></h2>
-      <%= link_to 'Update my password', edit_user_registration_path, type:"button", class:"btn btn-light" %></h2>
-  </div>
-</div>
-<% end %>
-<br/>
+<h2><%= @owner.name %> - Dashboard</h2>
 <br/>
 <div class="d-flex justify-content-around">
   <div align="middle" class="card" style="width: 12rem;">
@@ -38,19 +26,39 @@
     </div>
   </div>
 </div>
+<br>
+<div class="d-flex justify-content-around">
+  <div align="middle" class="card" style="width: 15rem;">
+    <div class="card-body">
+      <h5 class="card-title"># of Tasks: <%= @total_tasks %></h5>
+      <p class="card-text"><%= @total_tasks_duration %> hours</p>
+    </div>
+  </div>
+  <div align="middle" class="card" style="width: 15rem;">
+    <div class="card-body">
+      <h5 class="card-title"># of meetings: <%= @total_meetings %></h5>
+      <p class="card-text"><%= @total_meetings_duration %> hours</p>
+    </div>
+  </div>
+  <div align="middle" class="card" style="width: 15rem;">
+    <div class="card-body">
+      <h5 class="card-title"># of trainings: <%= @total_trainings %></h5>
+      <p class="card-text"><%= @total_trainings_duration %> hours</p>
+    </div>
+  </div>
+</div>
 <br/>
 <br/>
-<h4>Issues by <%= @owner.name %></h4>
+<h4>Issues from <%= @owner.name %></h4>
 <div class="table-responsive">
   <table class="table table-sm table-hover table-justified">
     <thead>
       <tr>
         <th scope="col">Jira ID</th>
-        <th scope="col">Project</th>
+        <th scope="col">Owner</th>
         <th scope="col">Type</th>
         <th scope="col">Estimation</th>
         <th scope="col">Réel</th>
-        <th scope="col"></th>
       </tr>
     </thead>
     <tbody>
@@ -65,24 +73,12 @@
               <%= '<i class="bi bi-hammer" style="font-size: 1.15rem;""></i>'.html_safe %>
             <% end %>
           </td>
-          <% if current_user.admin == true %>
-            <td><%= link_to issue.project.name, issue.project %></td>
-          <% else %>
-            <td><%= issue.project.name %></td>
-          <% end %>
+          <td><%= link_to issue.owner.name, issue.owner%></td>
           <td><%= issue.issue_type %></td>
           <td><%= issue.time_forecast %></td>
           <td><%= issue.time_real %></td>
-          <% if current_user.admin == true %>
-            <td align="middle">
-              <%= link_to '<i class="bi bi-pencil-square"></i>'.html_safe, edit_issue_path(issue) %>
-              &nbsp;
-              <%= link_to '<i class="bi bi-trash3"></i>'.html_safe, issue_path(issue), method: :delete %>
-            </td>
-          <% end %>
         </tr>
       <% end %>
     </tbody>
   </table>
-</div>
 </div>

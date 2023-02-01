@@ -13,19 +13,17 @@ IssueType.destroy_all
 
 p('Database dropped...')
 
-IssueType.create([{
-                    'name': 'Self-Training'
-                  },
-                  {
-                    'name': 'Training'
-                  },
-                  {
-                    'name': 'Meeting'
-                  },
-                  {
-                    'name': 'Task'
-                  }
-                  ]);
+IssueType.create([
+                   {
+                     'name': 'Training'
+                   },
+                   {
+                     'name': 'Meeting'
+                   },
+                   {
+                     'name': 'Task'
+                   }
+]);
 
 p('Issues Types seeded...')
 

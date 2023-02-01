@@ -1,7 +1,7 @@
   <hr>
 <div class='nested-fields d-flex'>
   <div class="col-sm-2 mr-3">
-    <%= f.input :jiraid, label: 'JIRA ID', pattern: '/\b[a-zA-Z]{2,6}-[1-9]\d{0,3}\b/', error: 'JIRA ID format is invalid (e.g. ABC-123)' %>
+    <%= f.input :jiraid, label: 'JIRA ID' %>
   </div>
   <div class="col-sm-4 mr-3">
     <%= f.association :owner, label: 'Assignee', selected: current_user.id, as: :select %>

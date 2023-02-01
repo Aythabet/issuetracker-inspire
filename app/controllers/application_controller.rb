@@ -90,12 +90,12 @@ class ApplicationController < ActionController::Base
 
   def issue_time_real_from_jira(issue)
     call_jira_api("https://agenceinspire.atlassian.net/rest/api/3/issue/#{issue.jiraid}/worklog")
-    worklogs = @response_output_issues["worklogs"]
+    worklogs = @response_output_issues['worklogs']
     issue.time_real = 'No data on JIRA'
     total_time_spent = 0
     if worklogs != []
       worklogs.each do |worklog|
-        total_time_spent += worklog["timeSpentSeconds"].to_f / 3600
+        total_time_spent += worklog['timeSpentSeconds'].to_f / 3600
         issue.time_real = total_time_spent
         @api_time_real = "#{issue.time_real} hours"
       end
