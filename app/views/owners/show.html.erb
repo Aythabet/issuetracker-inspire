@@ -1,5 +1,14 @@
-<h2><%= @owner.name %> - Dashboard</h2>
-<br/>
+<h2>Work by: <%= @owner.name %></h2>
+<% if current_user.email == @owner.user.email %>
+  <div class="d-flex" style="justify-content: space-between;">
+    <%= link_to 'My Dailyreports', my_crs_path(id: @owner.id), class:"btn btn-dark" %>
+    <div align="right">
+      <%= link_to 'Update my profile details', edit_owner_path(@owner), type:"button", class:"btn btn-light" %></h2>
+    <%= link_to 'Update my password', edit_user_registration_path, type:"button", class:"btn btn-light" %></h2>
+</div>
+</div>
+<% end %>
+<br>
 <div class="d-flex justify-content-around">
   <div align="middle" class="card" style="width: 12rem;">
     <div class="card-body">
