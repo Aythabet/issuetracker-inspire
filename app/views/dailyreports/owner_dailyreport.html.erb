@@ -1,35 +1,47 @@
 <h3><%= "#CRs signed by #{current_user.owner.name}" %></h3>
-<hr/>
 <%= link_to new_dailyreport_path do %>
   <button type="button" class="btn btn-success btn-sm btn-block">Submit a CR</button>
 <% end %>
-<hr/>
 <div class="d-flex flex-wrap">
-  <% @owner_dailyreport.each do |cr| %>
-    <div class="card" style="width: 30%; margin:10px">
+  <% @owner_dailyreport.each do |dailyreport| %>
+    <div class="card" style="width: 45%; margin:10px">
       <div class="card-body">
-        <h3 class="card-title">#CR: <%= cr.id %> du <%= cr.created_at.strftime("%d %B %Y - %kh%M") %></h3>
+        <h3 class="card-title">#CR: <%= dailyreport.id %> du <%= dailyreport.created_at.strftime("%d %B %Y - %kh%M") %></h3>
         <hr/>
-        <% if cr.issues == [] %>
+        <!-- Main Tasks -->
+        <% if dailyreport.issues == [] %>
           <p class="card-text"> No Tickets in this CR </p>
         <% else %>
-          <% cr.issues.each do |issue| %>
-            <span class="card-text"> <%= status_icon(issue.status) %> </span>
-            &nbsp;
-            <span class="card-text" style="font-weight: bolder;"> <%= issue.jiraid %></span>
-            <span class="card-text">  Time spent: <%= issue.time_real %> min</span>
-            <br>
-          </span>
+          <h6><strong> Main Tasks:</strong> </h6>
+          <% dailyreport.issues.each do |issue| %>
+            <% if issue.issue_type == "Task" %>
+              <span class="card-text"> <%= status_icon(issue.status) %> </span>
+              &nbsp;
+              <span class="card-text" style="font-weight: bolder;">  <%= link_to issue.jiraid, issue %></span>
+              <span class="card-text">  Time spent: <%= issue.time_real %> min - </span>
+              <span class="card-text">  <%= issue.status %></span><br>
+            <% end %>
+          <% end %>
+          <!-- Other tasks -->
+          <h6><strong> Other Tasks: </strong></h6>
+          <% dailyreport.issues.each do |issue| %>
+            <% if issue.issue_type != "Task" %>
+              <span class="card-text"> <%= type_issue_icon(issue.issue_type) %> </span>              &nbsp;
+              <span class="card-text" style="font-weight: bolder;">  <%= link_to issue.jiraid, issue %></span>
+              <span class="card-text">  <%= issue.issue_type %></span>
+              <span class="card-text">  Time spent: <%= issue.time_real %> min - </span>
+              <span class="card-text">  <%= issue.status %></span><br>
+            <% end %>
+          <% end %>
         <% end %>
-      <% end %>
-      <hr/>
-      <h5 class="card-subtitle mb-2 text-muted">Autres tâches</h5>
-      <p class="card-text">Formation: 2h.30min</p>
-      <p class="card-text">Réunion: 2h.30min : ValJob</p>
-      <p class="card-text">Réunion: 2h.30min : ValJob</p>
-      <hr/>
-      <p class="card-text">Commentaires: <%= cr.comment %> </p>
+        <!-- Comments -->
+        <div>
+          <% if dailyreport.comment.nil? || dailyreport.comment == "" %>
+          <% else %>
+            <p class="card-text" style="font-weight: light;"><strong>Commentaires:</strong> <%= dailyreport.comment %> </p>
+          <% end %>
+        </div>
+      </div>
     </div>
-  </div>
-<% end %>
+  <% end %>
 </div>

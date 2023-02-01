@@ -39,9 +39,26 @@ class OwnersController < ApplicationController
     @dailyreports = Dailyreport.where(owner_id: params[:id]).all
     @total_estimation = 0
     @total_real = 0
-    @owner.issues.each do |owner|
-      @total_estimation += owner.time_forecast
-      @total_real += owner.time_real
+    @total_tasks = 0
+    @total_tasks_duration = 0
+    @total_meetings = 0
+    @total_meetings_duration = 0
+    @total_trainings = 0
+    @total_trainings_duration = 0
+    @owner.issues.each do |issue|
+      @total_estimation += issue.time_forecast
+      @total_real += issue.time_real
+      case issue.issue_type
+      when 'Task'
+        @total_tasks += 1
+        @total_tasks_duration += issue.time_real
+      when 'Meeting'
+        @total_meetings += 1
+        @total_meetings_duration += issue.time_real
+      when 'Training', 'Self-training'
+        @total_trainings += 1
+        @total_trainings_duration += issue.time_real
+      end
     end
   end
 

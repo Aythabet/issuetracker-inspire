@@ -23,8 +23,6 @@ module DailyreportsHelper
       "<i class='bi bi-book-half'></i>".html_safe
     when "Meeting"
       "<i class='bi bi-calendar-week'></i>".html_safe
-    when "Self-training"
-      "<i class='bi bi-book'></i>".html_safe
     end
   end
 end
