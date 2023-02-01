@@ -27,9 +27,27 @@ class ProjectsController < ApplicationController
     define_owner
     @total_estimation = 0
     @total_real = 0
+    @total_tasks = 1
+    @total_tasks_duration = 0
+    @total_meetings = 1
+    @total_meetings_duration = 0
+    @total_trainings = 1
+    @total_trainings_duration = 0
     @project.issues.each do |issue|
       @total_estimation += issue.time_forecast
       @total_real += issue.time_real
+      case issue.issue_type
+      when 'Task'
+        @total_tasks += @total_tasks
+        @total_tasks_duration += @total_real
+      when 'Meeting'
+        @total_meetings += @total_tasks
+        @total_meetings_duration += @total_real
+      when 'Training', 'Self-training'
+        @total_trainings += @total_tasks
+        @total_trainings_duration += @total_real
+
+      end
     end
   end
 

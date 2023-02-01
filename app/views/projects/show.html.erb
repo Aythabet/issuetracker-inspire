@@ -26,6 +26,27 @@
     </div>
   </div>
 </div>
+<br>
+<div class="d-flex justify-content-around">
+  <div align="middle" class="card" style="width: 15rem;">
+    <div class="card-body">
+      <h5 class="card-title"># of Tasks: <%= @total_tasks %></h5>
+      <p class="card-text"><%= @total_tasks_duration %> hours</p>
+    </div>
+  </div>
+  <div align="middle" class="card" style="width: 15rem;">
+    <div class="card-body">
+      <h5 class="card-title"># of meetings: <%= @total_meetings %></h5>
+      <p class="card-text"><%= @total_meetings_duration %> hours</p>
+    </div>
+  </div>
+  <div align="middle" class="card" style="width: 15rem;">
+    <div class="card-body">
+      <h5 class="card-title"># of trainings: <%= @total_trainings %></h5>
+      <p class="card-text"><%= @total_trainings_duration %> hours</p>
+    </div>
+  </div>
+</div>
 <br/>
 <br/>
 <h4>Issues from <%= @project.name %></h4>
