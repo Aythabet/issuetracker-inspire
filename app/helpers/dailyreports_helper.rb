@@ -1,4 +1,5 @@
 module DailyreportsHelper
+
   def status_icon(status)
     case status
     when "Done"
@@ -13,6 +14,17 @@ module DailyreportsHelper
       "<i class='bi bi-hourglass'></i>".html_safe
     else
       "<i class='bi bi-question'></i>".html_safe
+    end
+  end
+
+  def type_issue_icon(type_issue)
+    case type_issue
+    when "Training"
+      "<i class='bi bi-book-half'></i>".html_safe
+    when "Meeting"
+      "<i class='bi bi-calendar-week'></i>".html_safe
+    when "Self-training"
+      "<i class='bi bi-book'></i>".html_safe
     end
   end
 end

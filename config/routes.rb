@@ -5,7 +5,7 @@ Rails.application.routes.draw do
 
   resources :projects
   resources :issues
-  resources :departements
+  resources :issue_types
   resources :owners
   resources :dailyreports
 

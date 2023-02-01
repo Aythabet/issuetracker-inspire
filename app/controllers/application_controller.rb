@@ -24,19 +24,21 @@ class ApplicationController < ActionController::Base
   end
 
   def call_jira_api(url)
-    url = URI.parse("#{url}")
+    url = URI.parse(url.to_s)
     headers = {
       'Authorization' =>  "Basic #{ENV['JIRA_API_TOKEN']}",
-      'Content-Type' => 'application/json'
+      'Content-Type'  =>  'application/json'
     }
-
     request = Net::HTTP::Get.new(url, headers)
-
     response = Net::HTTP.start(url.hostname, url.port, use_ssl: true) do |http|
       http.request(request)
     end
-
     @response_output_issues = JSON.parse(response.body)
+
+    return unless @response_output_issues.key?('errors')
+
+    no_api_reponse
+    flash.alert = 'Please check if the issue exists and is available on JIRA'
   end
 
   def no_api_reponse
@@ -60,12 +62,12 @@ class ApplicationController < ActionController::Base
 
   def issue_details_from_jira(issue)
     # get time_forecast field
+    issue.time_forecast = 'No data on JIRA'
     if @response_output_issues['fields']['timetracking']['originalEstimateSeconds']
       issue.time_forecast = @response_output_issues['fields']['timetracking']['originalEstimateSeconds'] / 3600
       @api_time_estimate = "#{issue.time_forecast} hours"
     else
       flash.alert = "No worklog found for issue: #{issue.jiraid}"
-      render :new
     end
 
     # get status field
@@ -74,7 +76,6 @@ class ApplicationController < ActionController::Base
       @api_status = issue.status
     else
       flash.alert = "Status can't be found. Please check if #{issue.jiraid} exists and is available on JIRA"
-      render :new
     end
 
     # get project field
@@ -84,13 +85,13 @@ class ApplicationController < ActionController::Base
       @api_project_name = issue.project.id
     else
       flash.alert = "Project can't be found. Please check if #{issue.jiraid} exists and is available on JIRA"
-      render :new
     end
   end
 
   def issue_time_real_from_jira(issue)
     call_jira_api("https://agenceinspire.atlassian.net/rest/api/3/issue/#{issue.jiraid}/worklog")
     worklogs = @response_output_issues["worklogs"]
+    issue.time_real = 'No data on JIRA'
     total_time_spent = 0
     if worklogs != []
       worklogs.each do |worklog|
@@ -100,7 +101,6 @@ class ApplicationController < ActionController::Base
       end
     else
       flash.alert = "No worklog found for issue: #{issue.jiraid}"
-      render :new
     end
   end
 end

@@ -4,12 +4,5 @@
                 required: true,
                 input_html: { autocomplete: "name" },
                 error: "Please specify a name"%>
-  <%= f.input :departement,
-                hint: "Please leave as it is if no changes required",
-                required: true,
-                input_html: { autocomplete: "Departement" },
-                collection: Departement.all,
-                label_method: :name,
-                value_method: :name  %>
   <%= f.button :submit %>
 <% end %>
